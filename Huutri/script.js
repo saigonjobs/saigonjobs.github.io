@@ -6,7 +6,7 @@ function render(data){
 
 
 $(document).ready(function(){
-	var coment=[];
+	var coment=[{"name":"tri","date":"2/3/2019","body":"boyd"}];
     if(!localStorage.comentData){
     	localStorage.comentData=[];
     }
