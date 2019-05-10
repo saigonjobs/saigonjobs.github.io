@@ -3,16 +3,12 @@ html, body{
     width: 100%;
     margin: 0px;
     padding: 0px;
-}
 
+}
 /* navbar from here */
 nav a img{
     width: 30px;
     margin-right: 10px;
-}
-
-.navlogin{
-    justify-content: flex-end;
 }
 
 .navbar-brand{
@@ -30,26 +26,13 @@ nav a img{
     background-image: url('headerimage.jpg');
     background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
 }
+
+
 
 .container .form-inline{
-    width: 100%;
     max-width: 1000px; 
-    justify-content: center;
-    align-content: center;
-}
-
-.container .form-inline .form-control{
-    width: 80%;
-}
-
-.container .form-inline .btn{
-    background-color: rgb(31, 133, 31);
-    color: white;
-}
-
-.container .form-inline .btn:hover{
-    background-color: rgb(87, 207, 87);
 }
 
 footer{
