@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Company Index</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+  </head>
+
+  <body>
+    <div class="header">
+      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" id="itemButton">...</button> 
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Change Avatar</a>
+        <a class="dropdown-item" href="#">Change Cover</a>
+        <a class="dropdown-item" href="#">See Full Cover Photos</a>
+        <a class="dropdown-item" href="./company-edit-info.html">Edit Company's Information</a>          
+      </div>
+      <div class="container">
+        <div class="row">
+            <img src="evely-lyt-squarewhite-4x.jpg" alt="Avatar" class="avatar img-fluid">         
+        </div>
+      </div>        
+      <h2 style="padding-left: 15%;">Company name</h2>   
+    </div>
+    
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item active">
+        <a class="nav-link active" data-toggle="pill" href="#home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#about">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#jobs">Jobs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#comments">Comments</a>
+      </li>
+      </ul>
+  
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane container active" id="home">
+        <a href="#" class="fa fa-facebook"></a>
+        </button>...</div>
+      <div class="tab-pane container fade" id="about">...</div>
+      <div class="tab-pane container fade" id="jobs">...</div>
+      <div class="tab-pane container fade" id="comments">...</div>
+    </div>      
+  </body>
+</html>

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Edit Company Information</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" id="itemButton">...</button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Change Avatar</a>
+      <a class="dropdown-item" href="#">Change Cover</a>
+      <a class="dropdown-item" href="#">See Full Cover Photos</a>
+    </div>
+    <div class="container">
+      <div class="row">
+        <img src="evely-lyt-squarewhite-4x.jpg" alt="Avatar" class="avatar img-fluid">
+      </div>
+    </div>
+    <h2 style="padding-left: 15%;">Company name</h2>
+  </div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item active">
+      <a class="nav-link active" data-toggle="pill" href="#general_information">General Information</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#recruitment">Recruitment</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="tab-content">
+      <!-- General Information Pane -->
+      <div class="tab-pane container active" id="general_information">
+        <form>
+          <!-- Common Information For Every Company-->
+          <div id="common_info_section">
+            <h2>Common Information</h2>
+            <div class="form-row">
+              <!--Edit Company Name -->
+              <div class="col-md-4 mb-3">
+                <label for="company_name" style="text-align: right">Company Name:</label>
+                <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name"
+                  minlength="1" maxlength="50" required>
+                <small id="company_name_help_block" class="form-text text-muted">
+                  Company name must be 1-50 characters long, contain letters, number and spaces, and must not contain
+                  special characters, or emoji.
+                </small>
+              </div>
+
+              <!--Edit Company Type -->
+              <div class="col-md-4 mb-3">
+                <label for="company_type">Type:</label>
+                <select class="form-control" id="company_type" name="company_type" required>
+                  <option value="none">Type...</option>
+                  <option value="limited_by_guarantee">Limited By Guarantee</option>
+                  <option value="publicly_traded">Publicly Traded</option>
+                  <option value="privately_held">Privately Held</option>
+                  <option value="llc">Limited Liability Company</option>
+                  <option value="unlimited">Unlimited</option>
+                </select>
+                <small id="company_type_help_block" class="form-text text-muted">
+                  Type of business.
+                </small>
+              </div>
+
+              <!--Edit Company Industry -->
+              <div class="col-md-4 mb-3">
+                <label for="company_industry">Industry:</label>
+                <select class="form-control" id="company_industry" name="company_industry" required>
+                  <option value="none">Industry...</option>
+                  <option value="accomodations">Accommodations</option>
+                  <option value="accounting">Accounting</option>
+                  <option value="advertising">Advertising</option>
+                  <option value="aerospace">Aerospace</option>
+                  <option value="agriculture">Agriculture & Agribusiness</option>
+                  <option value="air_transportation">Air Transportation</option>
+                  <option value="apparel_accessories">Apparel & Accessories</option>
+                  <option value="_auto">Auto</option>
+                  <option value="banking">Banking</option>
+                  <option value="beauty_cosmetics">Beauty & Cosmetics</option>
+                  <option value="bio_tech">Biotechnology </option>
+                  <option value="chemical">Chemical </option>
+                  <option value="communication">Communications</option>
+                  <option value="computer">Computer</option>
+                  <option value="construction">Construction</option>
+                  <option value="consulting">Consulting</option>
+                  <option value="consumer_prods">Consumer Products</option>
+                  <option value="distribution">Distribution</option>
+                  <option value="edu">Education</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="employment">Employment</option>
+                  <option value="energy">Energy</option>
+                  <option value="entertainment">Entertainment & Recreation</option>
+                  <option value="fashion">Fashion</option>
+                  <option value="financial_services">Financial Services</option>
+                  <option value="fine_arts">Fine Arts</option>
+                  <option value="food_beverage">Food & Beverage</option>
+                  <option value="green_tech">Green Technology</option>
+                  <option value="health">Health </option>
+                  <option value="industrial_prods">Industrial Products</option>
+                  <option value="info">Information</option>
+                  <option value="IT">Information Technology</option>
+                  <option value="insurance">Insurance</option>
+                  <option value="jounal">Journalism & News</option>
+                  <option value="legal_services">Legal Services</option>
+                  <option value="manufactoring">Manufacturing</option>
+                  <option value="media_broadcast">Media & Broadcasting</option>
+                  <option value="medical_devices_supplies">Medical Devices & Supplies</option>
+                  <option value="mining">Mining</option>
+                  <option value="motion_pics_video">Motion Pictures & Video</option>
+                  <option value="music">Music</option>
+                  <option value="pharmaceutical">Pharmaceutical </option>
+                  <option value="public_admin">Public Administration</option>
+                  <option value="public_relations">Public Relations</option>
+                  <option value="publishing">Publishing </option>
+                  <option value="rail">Rail</option>
+                  <option value="real_estate">Real Estate</option>
+                  <option value="retail">Retail</option>
+                  <option value="service">Service</option>
+                  <option value="shipping">Shipping</option>
+                  <option value="sports">Sports</option>
+                  <option value="steel">Steel</option>
+                  <option value="tech">Technology </option>
+                  <option value="telecommunication">Telecommunications</option>
+                  <option value="tourism">Tourism</option>
+                  <option value="transport">Transportation</option>
+                  <option value="travel">Travel</option>
+                  <option value="ultilities">Utilities</option>
+                  <option value="video_game">Video Game </option>
+                  <option value="web">Web Services </option>
+                </select>
+                <small id="company_industry_help_block" class="form-text text-muted">
+                  Field that the company is working on.
+                </small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <!-- Edit Company Founded Year -->
+              <div class="col-md-4 mb-3">
+                <label for="founded_year">Founded:</label>
+                <input type="number" class="form-control" id="founded_year" name="founded_year" value="1900" min="500"
+                  required>
+                <br>
+                <!-- Rounded switch for set publicy -->
+                <label for="set_founded_year_private">Set Private:</label>
+                <label class="switch">
+                  <input type="checkbox" id="set_founded_year_private" name="set_founded_year_private">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <!-- Edit Company Size -->
+              <div class="col-md-6 mb-4">
+                <label for="company_size">Company Size:</label>
+                <select class="form-control" id="company_size" name="company_size" required>
+                  <option value="none">Size...</option>
+                  <option value="self_employed">Self employed</option>
+                  <option value="1_10">1 - 10 employees</option>
+                  <option value="11_50">11 - 50 employees</option>
+                  <option value="51_200">51 - 200 employees</option>
+                  <option value="201_500">201 - 500 employees</option>
+                  <option value="501_1000">501 - 1,000 employees</option>
+                  <option value="1001_5000">1,001 - 5,000 employees</option>
+                  <option value="5001_10000">5,001 - 10,000 employees</option>
+                  <option value="10001_over">10,001+ employees</option>
+                </select>
+                <br>
+                <!-- Rounded switch for set publicy -->
+                <label for="set_company_size_private">Set Private:</label>
+                <label class="switch">
+                  <input type="checkbox" id="set_company_size_private" name="set_company_size_private">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Some Overview -->
+          <div id="overview_section">
+            <h4>Overview</h4>
+            <small id="overview_help_block" class="form-text text-muted">
+              Overview is where you can shortly introduce your company to all users of SaigonJobs. An attractive
+              introduction would
+              very helpful and efficient for recruitment.
+            </small>
+            <textarea id="overview" name="overview" class="form-control" placeholder="Type some text..." rows="5"
+              required></textarea>
+          </div>
+          <br>
+          <hr><br>
+          <!-- Headquarters and Locations-->
+          <div id="headquarters_and_location_section">
+            <h2>Headquarters and Locations</h2>
+            <br>
+            <!-- Some informations about the Headquarters. As LinkedIn did.... -->
+            <div id="headquarters_section">
+              <h4>Headquarters</h4>
+              <small id="headquarters_help_block" class="form-text text-muted">
+                Short address of Headquarters.
+              </small>
+              <div class="form-row">
+                <!-- Country -->
+                <div class="col-md-4 mb-3">
+                  <label for="headquarters_nation">Nation:</label>
+                  <input type="text" id="headquarters_nation" name="headquarters_nation" class="form-control"
+                    placeholder="Nation" required>
+                </div>
+                <!-- City -->
+                <div class="col-md-4 mb-3">
+                  <label for="headquarters_city">City:</label>
+                  <input type="text" id="headquarters_city" name="headquarters_city" class="form-control"
+                    placeholder="City" required>
+                </div>
+                <!-- State-->
+                <div class="col-md-4 mb-3">
+                  <label for="headquarters_state">State:</label>
+                  <input type="text" id="headquarters_state" name="headquarters_state" class="form-control"
+                    placeholder="State" required>
+                </div>
+              </div>
+            </div>
+            <br>
+            <!-- Locations -->
+            <div class="location_section">
+              <h4>Locations</h4>
+              <small id="location_help_block" class="form-text text-muted">
+                  You can have multiple addresses.
+                </small>
+              <div id="location" class="box">                
+                <div class="blank"></div>
+                <!--Form of every location-->               
+                <!-- Addresses -->  
+                 <!--<div class="form-group form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="location_address_1">Address</label>
+                        <input type="text" class="form-control" id="location_address_1" placeholder="1234 Main St" required>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="location_address_2">Address 2</label>
+                        <input type="text" class="form-control" id="location_address_2"
+                          placeholder="Apartment, studio, or floor"> 
+                      </div> -->
+                    <!-- Nation - City - State -->
+                   <!--<div class="form-row">
+                      <div class="form-group col-md-4">
+                        <label for="location_nation">Nation</label>
+                        <input type="text" id="location_nation" name="location_nation" class="form-control"
+                          placeholder="Nation" required>
+                      </div>
+                    <div class="form-group col-md-4">
+                        <label for="location_city">City / Province</label>
+                        <input type="text" id="location_city" name="location_city" class="form-control"
+                          placeholder="City / Province" required>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="inputState">State / District</label>
+                        <input type="text" id="inputState" name="inputState" class="form-control"
+                          placeholder="State / District" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>-->
+                </div>
+              </div>
+              </div>
+              <br>           
+              <button class="btn btn-primary add_location">New Location</button>
+            <br>
+          <br>
+          <hr><br>
+          <!-- Contacts -->
+          <div id="contacts_section">
+            <h2>Contacts</h2>
+            <div class="form-row">
+              <!-- Email -->
+              <div class="col-md-5">
+                <label for="company_email">Email</label>
+                <div class="input-group mb-3">
+                  <input type="email" class="form-control" id="company_email" name="company_email" placeholder="Email"
+                    required>
+                </div>
+                <small id="company_email_help_block" class="form-text text-muted">
+                  example1234@example.com
+                </small>
+              </div>
+              <!-- Website -->
+              <div class="col-md-5">
+                <label for="company_website">Website</label>
+                <input type="url" class="form-control" id="company_website" name="company_website"
+                  placeholder="Website">
+                <small id="company_website_help_block" class="form-text text-muted">
+                  https://example.com (Optional)
+                </small>
+              </div>
+            </div>
+            <br>
+            <div class="social_section">
+              <h4>Social Media</h4>
+              <small id="social_media_help_block" name="social_media_help_block" class="form-text text-muted">
+                Social media is another place to connect to your potential employees. (Optional)
+              </small>     
+            <!--  <div class="social_link">
+                <div class="form-row">
+                  <div class="col-md-3 mb-3">
+                    <select id="social_select" name="social_select" class="form-control">
+                      <option value="none">...</option>
+                      <option value="social_facebook">Facebook</option>
+                      <option value="social_twitter">Twitter</option>
+                      <option value="social_google">Google</option>
+                      <option value="social_linkedin">LinkedIn</option>
+                      <option value="social_youtube">Youtube</option>
+                      <option value="social_insta">Instagram</option>
+                      <option value="social_pinterest">Pinterest</option>
+                      <option value="social_snapchat">Snapchat</option>
+                      <option value="social_skype">Skype</option>
+                      <option value="social_dribble">Dribble</option>
+                      <option value="social_vimeo">Vimeo</option>
+                      <option value="social_tumblr">Tumblr</option>
+                      <option value="social_vine">Vine</option>
+                      <option value="social_foursquare">Foursquare</option>
+                      <option value="social_flickr">Flickr</option>
+                      <option value="social_soundcloud">Soundcloud</option>
+                      <option value="social_reddit">Reddit</option>
+                      <option value="social_rss">RSS</option>
+                    </select>
+                  </div>
+                  <div class="col-md-8 mb-3">
+                    <input type="url" id="social_url" name="social_url" class="form-control"
+                      placeholder="https://example.com/">
+                  </div>
+                </div>
+              </div>  -->
+            </div>
+            <br>
+            <!-- Add New Button -->
+            <button class="btn btn-primary add_social">Add Social Link</button>
+          </div>
+          <br>
+          <hr><br>
+          <!-- Save Button -->
+          <input type="submit" id="save_info" name="save_info" class="btn btn-primary" value="Save"
+            style="display: block; margin-left: auto; margin-right: auto;">
+        </form>   
+      </div>
+
+      <!-- Recruitment Pane -->
+      <div class="tab-pane container fade" id="recruitment">
+        <!-- Add new Job-->
+        <div id="add_new_recruitment_section">
+          <h2>Add New Job</h2>
+          <!-- Describe the Job -->
+          <div id="job_describe_section">
+            <form>
+              <div class="form-row">
+                <!-- Job Title -->
+                <div class="col-md-4 mb-3">
+                  <div id="_job_title">
+                    <label for="job_title">Job Title</label>
+                    <input type="text" id="job_title" name="job_title" class="form-control" minlength="1" maxlength="50"
+                      required>
+                    <small id="job_title_help_block" class="form-text text-muted">
+                      Job title cannot be longer than 50 characters.
+                    </small>
+                  </div>
+                </div>
+                <!-- Employment Type -->
+                <div class="col-md-4 mb-3">
+                  <div id="__employment_type">
+                    <label for="employment_type">Employment Type</label>
+                    <select class="form-control" required>
+                      <option value="none">Choose one</option>
+                      <option value="full_time">Full-time</option>
+                      <option value="part_time">Part-time</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Number of Applicants -->
+                <div class="col-md-4 mb-3">
+                  <div id="_num_applicants">
+                    <label for="num_applicants">Number of Applicants</label>
+                    <input type="number" id="num_applicants" name="num_applicants" class="form-control" min="1"
+                      required>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <!-- Location Pick -->
+                <div class="col-md-3">
+                  <div id="_job_location_pick">
+                    <label for="job_location_pick">Pick a location for the job</label>
+                    <select id="job_location_pick" name="job_location_pick" class="form-control" required>
+                      <option value="none">Choose one</option>
+                      <option value=""></option>
+                    </select>
+                    <small id="company_industry_help_block" class="form-text text-muted">
+                      Choose a location for the job.
+                    </small>
+                  </div>
+                </div>
+                <!-- Job poster link-->
+                <div class="col-md-8">
+                  <div id="job_poster">
+                    <label for="job_poster_url">Job Poster URL</label>
+                    <input type="url" id="job_poster_url" name="job_poster_url" class="form-control"
+                      placeholder="https://example.com/" required>
+                    <small id="job_poster_url_help_block" class="form-text text-muted">
+                      Please enter the field. Even if you set it as private, this will help the company manage their
+                      recruitments.
+                    </small>
+                    <!-- Rounded switch for set publicy -->
+                    <label for="set_job_poster_private">Set Private:</label>
+                    <label class="switch">
+                      <input type="checkbox" id="set_job_poster_private" name="set_job_poster_private">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <h3>Tags</h3>
+              <div class="form-row">
+                <!-- Industry Tags -->                
+                <div class="col-md-4 mb-3">
+                  <label for="job_industry">Industry:</label>
+                  <small id="company_industry_help_block" class="form-text text-muted">
+                      You can add multiple industry tags for the job.
+                    </small>
+                  <div class="job_industry_section">
+                  <!--  <div id="job_industry_tag">                      
+                      <select class="form-control" id="job_industry" name="job_industry" required>
+                        <option value="none">Industry...</option>
+                        <option value="accomodations">Accommodations</option>
+                        <option value="accounting">Accounting</option>
+                        <option value="advertising">Advertising</option>
+                        <option value="aerospace">Aerospace</option>
+                        <option value="agriculture">Agriculture & Agribusiness</option>
+                        <option value="air_transportation">Air Transportation</option>
+                        <option value="apparel_accessories">Apparel & Accessories</option>
+                        <option value="_auto">Auto</option>
+                        <option value="banking">Banking</option>
+                        <option value="beauty_cosmetics">Beauty & Cosmetics</option>
+                        <option value="bio_tech">Biotechnology </option>
+                        <option value="chemical">Chemical </option>
+                        <option value="communication">Communications</option>
+                        <option value="computer">Computer</option>
+                        <option value="construction">Construction</option>
+                        <option value="consulting">Consulting</option>
+                        <option value="consumer_prods">Consumer Products</option>
+                        <option value="distribution">Distribution</option>
+                        <option value="edu">Education</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="employment">Employment</option>
+                        <option value="energy">Energy</option>
+                        <option value="entertainment">Entertainment & Recreation</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="financial_services">Financial Services</option>
+                        <option value="fine_arts">Fine Arts</option>
+                        <option value="food_beverage">Food & Beverage</option>
+                        <option value="green_tech">Green Technology</option>
+                        <option value="health">Health </option>
+                        <option value="industrial_prods">Industrial Products</option>
+                        <option value="info">Information</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="insurance">Insurance</option>
+                        <option value="jounal">Journalism & News</option>
+                        <option value="legal_services">Legal Services</option>
+                        <option value="manufactoring">Manufacturing</option>
+                        <option value="media_broadcast">Media & Broadcasting</option>
+                        <option value="medical_devices_supplies">Medical Devices & Supplies</option>
+                        <option value="mining">Mining</option>
+                        <option value="motion_pics_video">Motion Pictures & Video</option>
+                        <option value="music">Music</option>
+                        <option value="pharmaceutical">Pharmaceutical </option>
+                        <option value="public_admin">Public Administration</option>
+                        <option value="public_relations">Public Relations</option>
+                        <option value="publishing">Publishing </option>
+                        <option value="rail">Rail</option>
+                        <option value="real_estate">Real Estate</option>
+                        <option value="retail">Retail</option>
+                        <option value="service">Service</option>
+                        <option value="shipping">Shipping</option>
+                        <option value="sports">Sports</option>
+                        <option value="steel">Steel</option>
+                        <option value="tech">Technology </option>
+                        <option value="telecommunication">Telecommunications</option>
+                        <option value="tourism">Tourism</option>
+                        <option value="transport">Transportation</option>
+                        <option value="travel">Travel</option>
+                        <option value="ultilities">Utilities</option>
+                        <option value="video_game">Video Game </option>
+                        <option value="web">Web Services </option>
+                      </select>
+                    </div>    -->                        
+                  </div>
+                  <div>
+                      <input type="button" class="btn btn-primary add_industry" id="add_job_industry" name="add_job_industry" value="+"> 
+                  </div>
+                </div>    
+                         
+                <div class="col-md-2"></div>
+                <!-- Job Function Tags -->
+                <div class="col-md-4 mb-3">
+                  <div class="job_function_section">
+                    <label for="job_function">Job Function</label>
+                    <small id="company_industry_help_block" class="form-text text-muted">
+                        You can add multiple function tags for the job.
+                      </small>
+                <!--    <div id="job_function_tag">                      
+                      <select class="form-control" id="job_function" name="job_function" required>
+                        <option>None</option>
+                        <option>Accounting</option>
+                        <option>Administrative</option>
+                        <option>Arts and Design</option>
+                        <option>Business Development</option>
+                        <option>Community & Social Services</option>
+                        <option>Consulting</option>
+                        <option>Education</option>
+                        <option>Engineering</option>
+                        <option>Entrepreneurship</option>
+                        <option>Finance</option>
+                        <option>Healthcare Services</option>
+                        <option>Human Resources</option>
+                        <option>Information Technology</option>
+                        <option>Legal</option>
+                        <option>Marketing</option>
+                        <option>Media & Communications</option>
+                        <option>Military & Protective Services</option>
+                        <option>Operations</option>
+                        <option>Product Management</option>
+                        <option>Program & Product Management</option>
+                        <option>Purchasing</option>
+                        <option>Quality Assurance</option>
+                        <option>Real Estate</option>
+                        <option>Rersearch</option>
+                        <option>Sales</option>
+                        <option>Support</option>
+                      </select>
+                    </div>    -->                  
+                  </div>
+                  <input type="button" class="btn btn-primary add_function" id="add_job_function" name="add_job_function" value="+">
+                </div>
+              </div>
+              <br>
+              <!-- Introduction-->
+              <div id="job_description">
+                <h4>Description</h4>
+                <small id="overview_help_block" class="form-text text-muted">
+                  Description is where you can make an abbreviation about the job.
+                </small>
+                <textarea id="overview" name="overview" class="form-control" placeholder="Type some text..." rows="5"
+                  required></textarea>
+              </div>
+              <br>
+              <!-- Responsibilites -->
+              <div class="form-row">
+                <div class="col-md-6">
+                  <label for="job_responsibilites">Responsibilites</label>
+                  <textarea id="job_responsibilites" name="job_responsibilites" class="form-control" rows="5"
+                    placeholder="Type something..." required></textarea>
+                  <small id="job_responsibilites_help_block" class="form-text text-muted">
+                    Be as specific as possible. Responsibilites are basically what the applicants will do if they are
+                    employed.
+                  </small>
+                </div>
+                <!-- Qualifications -->
+                <div class="col-md-6">
+                  <label for="job_qualifications">Qualifications</label>
+                  <textarea id="job_qualifications" name="job_qualifications" class="form-control" rows="5"
+                    placeholder="Type something..." required></textarea>
+                  <small id="job_qualifications_help_block" class="form-text text-muted">
+                    Be as specific as possible. Qualifications are demanded skills, experiences and degrees.
+                  </small>
+                </div>
+              </div>
+              <!-- Save Recruitment Form Button -->
+              <input type="submit" id="save_recruitment_form" name="save_recruitment_form" class="btn btn-primary"
+                value="Save" style="display: block; margin-left: auto; margin-right: auto;">
+            </form>
+          </div>
+        </div>
+        <br>
+        <hr><br>
+        <!-- Manage and Remove Section -->
+        <div id="manage_and_remove_recruitment_section">
+          <h2>Manage or Remove Recruitments</h2>
+          <br>
+          <div class="row">
+            <!-- Example Card -->
+            <div class="card">
+              <div class="card-body" id="job_recruitment_1">
+                <h4 class="card-title" id="job_title_1">Job Title</h4>
+                <p class="card-text">Some example text.</p>
+                <p class="card-text">Some more text.</p>
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#" class="btn btn-primary">Manage</a>
+                  </div>
+                  <div class="col-md-1"></div>
+                  <div class="col-md-4">
+                    <a href="#" class="btn btn-primary">Remove</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+</body>
+
+</html>
