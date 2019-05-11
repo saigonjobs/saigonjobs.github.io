@@ -66,7 +66,13 @@
 <div class="form">
     <h5>Add Comment</h5>
     Name:<input type="text" id="name"/><br/><br/>
-    Date:<input type="date" id="date"/><br/><br/>
+    Rate:<select type="text" id="rate">
+             <option value="1">1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
+             <option value="4">4</option>
+             <option value="5">5</option>
+         </select><br/><br/>
     Body:<textarea rows="5" cols="36" id="bodyText"></textarea><br/><br/>
     <input type="button" id="addComent" value="Add Comment"/>
 </div>
@@ -75,9 +81,7 @@
     
 </div>
 
-<footer>
-    <p>Footer</p>
-</footer>
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
