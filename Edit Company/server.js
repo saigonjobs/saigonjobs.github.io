@@ -54,7 +54,7 @@ app.get('/', function(req, res)
 app.post('/company-index.html',function(req,res){
     console.log(req.body);
 
-    // Validation
+    // Validation & Hanlder
     if (req.body.save === 'Save Company Information')
     {
         var err = 0;
@@ -83,7 +83,6 @@ app.post('/company-index.html',function(req,res){
             }
         }
         
-
         // Social Validating
         if (req.body.social_url)
         {
@@ -93,7 +92,6 @@ app.post('/company-index.html',function(req,res){
                 {
                     for (var j = i; j < req.body.social_url.length; j++)
                     {
-                        console.log(req.body.social_url[i] + " " + req.body.social_url[j])
                         if (req.body.social_url[i] === req.body.social_url[j]){
                                 err += 2;
                                 break;
@@ -104,7 +102,7 @@ app.post('/company-index.html',function(req,res){
             }
         }
         
-        console.log(err);
+        // Exception Handler
         switch (err)
         {
             case 1:
