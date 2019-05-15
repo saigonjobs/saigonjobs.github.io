@@ -4,9 +4,8 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
+// var expressValidator = require('express-validator');
 // validator = require('validator');
-const { check, validationResult } = require('express-validator/check');
 var app = express();
 
     ////////////////////////
@@ -28,21 +27,7 @@ app.use(bodyParser.json());
  //                    //
 ////////////////////////
 
-// Custom Form Validation 
-app.use(expressValidator({
-    customValidators: {
-       isArray: function(value) {
-          return Array.isArray(value);
-       },
-       notEmpty: function(array) {
-          return array.length > 0;
-       },
-       gte: function(param, num) {
-          return param >= num;
-       }
-    }
-  }));
-  
+
 // Display the site
 app.get('/', function(req, res)
 {
