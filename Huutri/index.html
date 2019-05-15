@@ -9,9 +9,10 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
+<body background="background.jpg">
 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -62,26 +63,70 @@
         </div>
     </nav>
 
+<div id="container">
+    <br><br><br><br>
+</div>
 
-<div class="form">
-    <h5>Add Comment</h5>
-    Name:<input type="text" id="name"/><br/><br/>
-    Rate:<select type="text" id="rate">
+<div class="form" >
+    <h1 ><img src="facebook.png	"/>Facebook</h1><br/><br/>
+    Name <input type="text" id="name"/><br/><br/>
+    Rate <select type="text" id="rate">
              <option value="1">1</option>
              <option value="2">2</option>
              <option value="3">3</option>
              <option value="4">4</option>
              <option value="5">5</option>
          </select><br/><br/>
-    Body:<textarea rows="5" cols="36" id="bodyText"></textarea><br/><br/>
-    <input type="button" id="addComent" value="Add Comment"/>
-</div>
-
-<div id="container">
-    
+    Comment <textarea rows="5" cols="36" id="bodyText"></textarea><br/><br/>
+    <input type="button" id="addComent" value="Add Comment" />
 </div>
 
 
+<footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 myCols">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sign up</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help desk</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="social-networks">
+            <a href="#" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2019 SaigonJobs. All Rights Reserved. </p>
+        </div>
+    </footer>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
