@@ -1,6 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
 
-
 module.exports = function search(text, res) {
     if ((text === '') || (text == undefined)) {
         res.render('index', {result: []});
@@ -29,3 +28,4 @@ module.exports = function search(text, res) {
         });
     }
 }
+
