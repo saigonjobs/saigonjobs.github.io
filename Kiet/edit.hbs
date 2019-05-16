@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>SaigonJobs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+
+<body>
+    <!-- navbar from here -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">IT Jobs</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Top Company
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">VINASA Rankings</a>
+                        <a class="dropdown-item" href="#">Top rating</a>
+                        <a class="dropdown-item" href="#">Top recruiment</a>
+                    </div>
+                </li>
+                <li class="nav-item my-lg-0">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mx-auto order-0 d-flex">
+            <a class="navbar-brand mx-auto" href="#">
+                <img src="50015919_2163738723682969_1825546828070780928_n.png" alt="">
+            </a>
+            <a class="navbar-brand mx-auto" href="#">SaigonJobs</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse w-100 order-2 dual-collapse2" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="D:\SE\Bootstrap\Bá\all.html">History</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="D:\SE\Bootstrap\Đăng\index.html">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- navbar end here -->
+
+    <di class="subc">
+        <h3></h3>
+    </di>
+
+    <div class="container">
+      <section class="insert">
+        <form action="/insert" method="post">
+            <div class="form-row">
+              <div class="form-group col-md-8">
+                <div class="input">
+                <label for="inputCity">Family name </label>
+                <input type="text" class="form-control" id="familyname" name="familyname" placeholder="Nguyen Van" required>
+              </div>
+              </div>
+              <div class="form-group col-md-4">
+                <div class="input">
+                <label for="inputCity">Given name</label>
+                <input type="text" class="form-control" id="givename" name="givename" placeholder="A"required>
+              </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <div class="input">
+                  <label for="inputState">Gender</label>
+                  <select id="gender" name="gender" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-2">
+                <div class="input">
+                  <label for="inputCity">Date of Birth</label>
+                  <input type="text" class="form-control" id="dob" name="dob" placeholder="dd/mm/yyyy">
+                </div>
+              </div>
+              <div class="form-group col-md-8">
+                  <div class="form-group">
+                    <div class="input">
+                      <label for="inputAddress">Address</label>
+                      <input type="text" class="form-control" id="address" name="address" placeholder="1234 Ly Thuong Kiet">
+                    </div>
+                    </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <div class="input">
+                  <label for="inputAddress">Phone number</label>
+                  <input type="text" name="phonenumber"class="form-control" id="phonenumber" placeholder="0913659245">
+                </div>
+              </div>
+              <div class="form-group col-md-8">
+                <div class="input">
+                  <label for="inputEmail4">Email address</label>
+                  <input type="text" class="form-control" id="email" name="email" placeholder="saigonjobs@gmail.com">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <div class="input">
+                <label for="inputCity">Academic level</label>
+                <input type="text" class="form-control" name="academiclv" id="academiclv">
+              </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="input">
+                <label for="inputState">Graduated from</label>
+                <input type="text" class="form-control" id="graduate" name="graduate">
+              </div>
+              </div>
+            </div>
+
+              <button type="submit" class="btn btn-submit">Update</button>
+              <button type="reset" class="btn btn-danger" onclick="gotoEdit"> Reset </button>
+
+          </form>
+        </section>
+    </div>
+
+  <script>
+      function gotoEdit() {
+          window.location.href='/edit'
+        }
+  </script>
+
+    <!--Script Bootstrap-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src='script.js'></script>
+</body>
+
+</html>
