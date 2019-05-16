@@ -1,0 +1,54 @@
+body {
+  clear :both;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 100px 200px 100px 150px;
+}
+
+a {
+  color: #00B7FF;
+}
+.remove-new {
+  border: 0;
+  padding: 4px 8px;
+  background-color: #c66;
+  color: #fff;
+  font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";
+  font-size: 15px;
+  border-radius: 5px;
+}
+.insert-new {
+  border: 0;
+  padding: 4px 8px;
+  background-color: #c66;
+  color: #fff;
+  font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";
+  font-size: 15px;
+  border-radius: 5px;
+}
+.remove-new:hover {
+  background-color: #a44;
+}
+.thumbnail {
+  clear : both;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+
+}
+.enter{
+  display:none;
+}
+.enter1{
+  display:none;
+}
+.enter2{
+  display:none;
+}
+.enter3{
+  display:none;
+}
+.enter4{
+  display:none;
+}
+

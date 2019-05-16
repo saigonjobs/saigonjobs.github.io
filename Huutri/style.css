@@ -1,11 +1,4 @@
-html{
-    width: 100%;
-    height: 100%;
-}
-body{
-    width: 100%;
-    height: 100%;
-}
+
 nav a img{
     width: 30px;
     margin-right: 10px;
@@ -23,24 +16,18 @@ nav a img{
 /* navbar end here */
 
 
-
-footer{
-    height: 100px;
-    background-color: gray;
-    position: relative;
-    bottom: 0px;
-}
-
-
 .comentBox{
     padding: 1%;
-    margin-left: 4%;
+    margin-left: 15%;
     margin-top: 10px;
-    width: 90%;
+    margin-bottom: 10px;
+    width: 72%;
     height: 20%;
-    border: 1px solid black;
-    background-color: #f0f0f0;
+    border-radius: 5px;
+    border-top:  20px solid #3A5FCD;
+    background-color: white;
 }
+
 
 .leftPanelImg{
     width: 8%;
@@ -62,19 +49,314 @@ footer{
     clear:both;
 }
 
+
+
+.body p{
+    word-wrap: break-word;
+}
+
+.title img{
+    width: 5%;
+    height: 5%;
+}
+
+h1{
+    text-align: center;
+    color: #222222;
+    font-size: 350%;
+    font-weight: bold;
+}
 .form{
-    padding: 10px;
-    border: 1px solid #000;
-    margin-bottom: 10px;
-    text-align: center;
+    padding: 1%;
+    padding-left: 3%;
+    margin-top:3%;
+    margin-left: 17%;
+    border-color: red;
+    width: 62%;
+    height:30%; 
+    border: 5px solid #ffffff;
+    color:black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f1f1f1;
 }
 
-.form h5{
-    text-align: center;
+#container1{
+    margin-bottom: 15%;
 }
 
-.form input[type="text"] , .form textarea, .form input[type="date"]{
-    border: 1px solid #000;
+.form input[type="button"]{
+    background-color: green;
+    color: white;
+}
+
+.form select[type="text"] {
+    border: 1px solid #333333;
     padding: 2px;
-    width: 300px;
+    width: 10%;
+}
+
+.form input[type="text"]{
+    border: 1px solid #333333;
+    padding: 2px;
+    width: 30%;
+}
+
+.form textarea{
+    width: 92%;
+    border: 1px solid #333333;
+}
+
+#left{
+     width: 20%;
+     height: 100%;
+     border: 1px solid #CDCDCD;
+     float:left;
+     background-color: #004C00;
+}
+#center{
+     width: 55%;
+     height: 100%
+     border: 1px solid #CDCDCD;
+     float:left;
+}
+#right{
+     width: 25%;
+     height: 100%;
+     border: 1px solid #CDCDCD;
+     float:right;
+}
+
+#footer{
+     clear: both;
+     background-color: #F8F8FF;
+}
+
+/* Add This If Using Jumbotron-Fluid class */
+
+#myFooter{
+    position: absolute;
+    width: 100%;
+    height: 35.25%;
+}
+.jumbotron-fluid{
+    margin-bottom: 0%;
+  }
+    
+    
+    /* Social Buttons */
+
+    
+.fa {
+    padding: 10px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* All Social Media Button Settings*/
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-google {
+    background: #dd4b39;
+    color: white;
+}
+
+.fa-linkedin {
+    background: #007bb5;
+    color: white;
+}
+
+.fa-youtube {
+    background: #bb0000;
+    color: white;
+}
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+.fa-pinterest {
+    background: #cb2027;
+    color: white;
+}
+
+.fa-snapchat-ghost {
+    background: #fffc00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.fa-skype {
+    background: #00aff0;
+    color: white;
+}
+
+.fa-android {
+    background: #a4c639;
+    color: white;
+}
+
+.fa-dribbble {
+    background: #ea4c89;
+    color: white;
+}
+
+.fa-vimeo {
+    background: #45bbff;
+    color: white;
+}
+
+.fa-tumblr {
+    background: #2c4762;
+    color: white;
+}
+
+.fa-vine {
+    background: #00b489;
+    color: white;
+}
+
+.fa-foursquare {
+    background: #45bbff;
+    color: white;
+}
+
+.fa-stumbleupon {
+    background: #eb4924;
+    color: white;
+}
+
+.fa-flickr {
+    background: #f40083;
+    color: white;
+}
+
+.fa-yahoo {
+    background: #430297;
+    color: white;
+}
+
+.fa-soundcloud {
+    background: #ff5500;
+    color: white;
+}
+
+.fa-reddit {
+    background: #ff5700;
+    color: white;
+}
+
+.fa-rss {
+    background: #ff6600;
+    color: white;
+}
+
+
+  /* Footer Design */
+
+#myFooter {
+    background-color: #373a48;
+    color:white;
+}
+
+#myFooter .footer-copyright{
+    background-color: #383737;
+    padding-top:3px;
+    padding-bottom:3px;
+    text-align: center;
+}
+
+#myFooter .footer-copyright p{
+    margin:10px;
+    color: #ccc;
+}
+
+#myFooter ul{
+  background-color: #373a48;
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 1;
+
+}
+
+#myFooter h5{
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+#myFooter a{
+    color:#d2d1d1;
+    text-decoration: none;
+}
+
+#myFooter a:hover, #myFooter a:focus{
+    text-decoration: none;
+    color:white;
+}
+
+#myFooter .myCols{
+    text-align: center;
+}
+
+
+#myFooter .myCols li{
+  display: block;
+  float: none;
+} 
+
+#myFooter .social-networks{
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 38px;
+}
+
+#myFooter .social-networks a{
+    font-size: 32px;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #f9f9f9;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+#myFooter .social-networks a:hover{
+    text-decoration: none;
+
+}
+
+#myFooter .facebook:hover{
+    color:#0077e2;
+}
+
+#myFooter .google:hover{
+    color:#ef1a1a;
+}
+
+#myFooter .twitter:hover{
+    color: #00aced;
+}
+
+@media screen and (max-width: 767px){
+    #myFooter {
+        text-align: center;
+    }
 }
