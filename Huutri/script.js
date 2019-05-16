@@ -30,7 +30,6 @@ $(document).ready(function(){
     	var addObj = {
            "name": $('#name').val(),
            "date": time,
-           "like": 0,
            "rate": rate,
            "body": $('#bodyText').val()
         };
