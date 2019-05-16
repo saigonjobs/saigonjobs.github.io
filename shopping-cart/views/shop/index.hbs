@@ -1,0 +1,42 @@
+{{# each products}}      
+  <div class="row">
+    {{# each this }}
+    <div class="col-sm-6 col-md-3" alt= "..." class img = "img-responsive">
+      <div class="thumbnail">
+        <img src="{{this.path}}">
+        <div class="caption">
+          <h3>{{this.discription}}</h3>
+          <p>Công ty : FPT Software</p>
+          <p>Thời gian : 10/6 - 30/6</p>
+          <p>Địa chỉ: Khu công nghệ cao Quận 9, TPHCM </p>
+          <p>[Full-time]<a class="btn more" role="button"> Xem thêm </a></p>
+          <section class ="delete">
+            <form action ="/delete" method ="POST">
+              <div class ="input">
+                <input class ="enter" type="text" id ="id" name ="id" value ="{{this._id}}">
+                <button type ="submit" class ="remove-new"> 
+                  Xóa
+                </button>
+              </div>
+            </form>
+          </section>
+          <section class ="insert">
+            <form action ="/insert" method ="POST">
+              <div class ="input">
+                <input class ="enter1" type="text" id ="path" name ="path" value ="{{this.path}}">
+                <input class ="enter2" type="text" id ="discription" name ="discription" value ="{{this.discription}}">
+                <input class ="enter3" type="text" id ="title" name ="title" value ="{{this.title}}">
+                <input class ="enter4" type="text" id ="price" name ="price" value ="{{this.price}}">
+                <button type ="submit" class ="insert-new"> 
+                  Thêm vào giỏ
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+{{/each}}
+       
