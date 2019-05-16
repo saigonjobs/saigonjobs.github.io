@@ -1,6 +1,6 @@
 function render(data){
-	var html="<div class='comentBox'><div class='leftPanelImg'><img src='logo.png'/></div><div class='rightPanel'><span><b>"+data.name+"</b></span><div class='like'>"+data.like+"</div><div class='date'>"+data.date+"</div><div class='rate'>"+data.rate+"</div><p>"+data.body+"<br/></p></div><input type='button' id='like' value='Like'/><div class='clear'></div></div>";
-	$('#container').append(html);
+	var html="<div class='comentBox'><div class='leftPanelImg'><img src='logo.png'/></div><div class='rightPanel'><span><b>"+data.name+"</b></span><div class='date'>"+data.date+"</div><div class='rate'>"+data.rate+"</div><div class='body'><p>"+data.body+"<br/></p></div></div><input type='button' id='like' value='Like'/><div class='clear'></div></div>";
+	$('#container1').append(html);
 }
 
 
@@ -43,6 +43,3 @@ $(document).ready(function(){
        $('#bodyText').val('');
     });
 });
-
-
-

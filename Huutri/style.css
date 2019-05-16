@@ -1,11 +1,3 @@
-html{
-    width: 100%;
-    height: 100%;
-}
-body{
-    width: 100%;
-    height: 100%;
-}
 
 nav a img{
     width: 30px;
@@ -24,17 +16,16 @@ nav a img{
 /* navbar end here */
 
 
-
 .comentBox{
     padding: 1%;
-    margin-left: 25%;
+    margin-left: 15%;
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 50%;
+    width: 72%;
     height: 20%;
     border-radius: 5px;
     border-top:  20px solid #3A5FCD;
-    background-color: #f5fffa;
+    background-color: white;
 }
 
 
@@ -58,49 +49,98 @@ nav a img{
     clear:both;
 }
 
-.form{
-    padding: 10px;
-    margin-bottom: 2%;
-    margin-top:1%;
-    margin-left: 30%;
-    margin-right: 30%;
-    border-color: red;
-    width: 40%;
-    height: 55%;
-    border: 1px solid #000;
-    color:black;
+
+
+.body p{
+    word-wrap: break-word;
+}
+
+.title img{
+    width: 5%;
+    height: 5%;
+}
+
+h1{
     text-align: center;
-    border-radius: 3%;
+    color: #222222;
+    font-size: 350%;
     font-weight: bold;
-    font-family: 'Itim', cursive;
-    background-image : url("comment.jpg");
-    background-size: cover;
 }
-.form h1{
-    text-align: center;
-    size: 35;
-    border-radius: 10px;
-    width: 34%;
-    margin-left: 33%;
-    margin-right: 33%;
-}
-
-.form h1 img{
-    width: 15%;
-    height: 15%;
-    margin-top: -3%;
+.form{
+    padding: 1%;
+    padding-left: 3%;
+    margin-top:3%;
+    margin-left: 17%;
+    border-color: red;
+    width: 62%;
+    height:30%; 
+    border: 5px solid #ffffff;
+    color:black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f1f1f1;
 }
 
-.form select[type="text"] ,.form input[type="text"] , .form textarea{
-    border: 1px solid #000;
+#container1{
+    margin-bottom: 15%;
+}
+
+.form input[type="button"]{
+    background-color: green;
+    color: white;
+}
+
+.form select[type="text"] {
+    border: 1px solid #333333;
     padding: 2px;
-    width: 80%;
-    border-radius: 10px;
+    width: 10%;
 }
 
+.form input[type="text"]{
+    border: 1px solid #333333;
+    padding: 2px;
+    width: 30%;
+}
 
+.form textarea{
+    width: 92%;
+    border: 1px solid #333333;
+}
+
+#left{
+     width: 20%;
+     height: 100%;
+     border: 1px solid #CDCDCD;
+     float:left;
+     background-color: #004C00;
+}
+#center{
+     width: 55%;
+     height: 100%
+     border: 1px solid #CDCDCD;
+     float:left;
+}
+#right{
+     width: 25%;
+     height: 100%;
+     border: 1px solid #CDCDCD;
+     float:right;
+}
+
+#footer{
+     clear: both;
+     background-color: #F8F8FF;
+}
+
+/* Add This If Using Jumbotron-Fluid class */
+
+#myFooter{
+    position: absolute;
+    width: 100%;
+    height: 35.25%;
+}
 .jumbotron-fluid{
-    margin-bottom: 0px;
+    margin-bottom: 0%;
   }
     
     
