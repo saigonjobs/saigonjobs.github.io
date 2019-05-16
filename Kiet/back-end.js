@@ -23,13 +23,14 @@ app.get('/',function(req,res,next){
       if (err) throw err;
       var dbo = db.db("database");
       var resultArray=[];
-      dbo.collection("applicant_info").find({}).toArray(function(err, result) {
+      dbo.collection("applicant_info").find().limit(1).sort({$natural:-1}).toArray(function(err,result){
         if (err) throw err;
         resultArray.push(result);
         db.close();
         console.log(resultArray);
         res.render('profile',{items : resultArray[0]});
       });
+
     });
 
 });
