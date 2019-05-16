@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Company Index</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
+  </head>
+
+  <body>
+    <div class="header" style="background: url(./static/1080377.jpg);">      
+      <div class="container">
+        <div class="row">
+            <img src="./static/evely-lyt-squarewhite-4x.jpg" alt="Avatar" class="avatar img-fluid">         
+        </div>
+      </div>        
+      <h2 style="padding-left: 15%;"><%= result[0].company_name %></h2>   
+    </div>
+   
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item active">
+        <a class="nav-link active" data-toggle="pill" href="#home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#about">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#jobs">Jobs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#comments">Comments</a>
+      </li>
+      </ul>
+  
+    <!-- Tab panes -->
+    <div class="jumbotron jumbotron-fluid">
+      <div class="tab-content">
+        <div class="tab-pane container active" id="home">
+          <div class="col-md-3">
+
+            </div>
+          </div>
+
+        <div class="tab-pane container fade" id="about">
+          <div class="form-row">
+            <!-- Company Quickview Section -->
+            <%- include('about_and_contact') %>
+
+              <!-- Company Overview Section -->
+              <div class="col-md-6">
+                <div class="card">
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><h2>Overview</h2></li>
+                      <li class="list-group-item"><span><%= result[0].overview %></span></li>
+                  </ul>
+                </div>
+            </div>
+
+              <!-- Company Locations Section -->
+              <div class="col-md-3">
+                <div class="card sticky-top">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><h2>Locations</h2></li>
+                    <% if(result[0].location_address_1) { %> 
+                      <% for(var i =0; i < result[0].location_address_1.length; i++) { %>
+                        <li class="list-group-item"><span><%= result[0].location_address_1[i] %></span>
+                          <span>, <%= result[0].location_address_2[i] %></span>
+                          <span>, <%= result[0].location_state[i] %></span>
+                          <span>, <%= result[0].location_city[i] %></span>
+                          <span>, <%= result[0].location_nation[i] %></span>
+                        </li>
+                     <% } %>
+                    <% } %>
+                    </ul>
+                  </div>
+              </div>             
+          </div>          
+        </div>
+
+        <div class="tab-pane container fade" id="jobs">
+          <div class="form-row">
+              <%- include('about_and_contact') %>
+              <div class="col-md-6">
+                <% if (jobs.length != 0) { %>
+                  <% for (var i = 0; i < jobs.length; i++) { %>
+                    <div class="card">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><h2><%= jobs[i].job_title %></h2></li>                       
+                        <li class="list-group-item"><span>Recruiting: <%= jobs[i].num_applicants %> applicants</span></li>
+                        <li class="list-group-item"><span>Location: <%= jobs[i].job_location_pick %></span></li>
+                        <li class="list-group-item"><span>Receive CVs From: <%= jobs[i].job_cv_date %></span></li>
+                        
+                        <li class="list-group-item"><span>Tags:
+                            <% for (var j = 0; j < jobs[i].job_tags.length; j++) { %>
+                              <span><%= jobs[i].job_tags[j] %>; </span>
+                            <%  } %>
+                           
+                        </span></li>
+                      </ul>
+                    </div>
+                    <hr class="short">
+                  <%  } %>                       
+                 <% } else {%>  
+                  <div class="card">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><h4>We are not recruiting! Maybe later!</h4></li>
+                      </ul>
+                    </div>
+                  <%  } %>                      
+              </div>
+          <%- include('job_fun_facts') %>
+              
+          </div>
+        </div>
+        <div class="tab-pane container fade" id="comments">
+          <div class="form-row">
+              <%- include('about_and_contact') %>
+              <div class="col-md-6">
+                <% var action_mess = "/add-comment/companyID/" + result[0]._id %>
+                    <form method="POST" action="<%= action_mess %>">
+                      <p>Name</p><input class="form-control" type="text" id="name" name="name" placeholder="Enter Name ..."/>
+                      <span>Rate</span> <select class="form-control" id="rate" name="rate">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        </select>
+                        <span>Comment</span>
+                        <input type="text" class="form-control" id="body" name="body" placeholder="Enter Comment...">
+                        <hr>
+                        <input style="display: block; margin-left: auto; margin-right: auto" type="submit" class="btn btn-primary" value="Add Comment" >
+                    </form>
+                 
+                  <br>
+  
+                      <% if (result[0].rate.length != 0) { %>
+                        <% for (var i = 0; i < result[0].rate.length; i++) { %>
+                          <div class="card">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item"><h2><%= result[0].rate[i].name %></h2></li>                       
+                              <li class="list-group-item"><span><%= result[0].rate[i].star %> ★</span></li>
+                              <li class="list-group-item"><span><%= result[0].rate[i].body %></span></li>                        
+                            </ul>
+                          </div>
+                          <hr class="short">
+                        <%  } %>                       
+                       <% } else {%>  
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item"><h4>This company has no comment yet. Be the first one!</h4></li>
+                            </ul>
+                          </div>
+                        <%  } %>
+                  
+              </div>
+            <%- include('job_fun_facts') %>
+          </div>
+                  
+         </div>
+      </div>
+    </div>
+    
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 myCols">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sign up</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help desk</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="social-networks">
+            <a href="#" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2019 SaigonJobs. All Rights Reserved. </p>
+        </div>
+    </footer>
+  </body>
+</html>
+
+

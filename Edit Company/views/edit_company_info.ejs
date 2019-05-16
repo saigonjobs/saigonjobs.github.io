@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Edit Company Information</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/static/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/style.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" id="itemButton">...</button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Change Avatar</a>
+      <a class="dropdown-item" href="#">Change Cover</a>
+      <a class="dropdown-item" href="#">See Full Cover Photos</a>
+    </div>
+    <div class="container">
+      <div class="row">
+        <img src="/static/evely-lyt-squarewhite-4x.jpg" alt="Avatar" class="avatar img-fluid">
+      </div>
+    </div>
+    <a href="./profile" style="text-decoration: none; color: white;"><h2 style="padding-left: 15%;"><%= result[0].company_name %></h2></a>
+  </div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item active">
+      <a class="nav-link active" data-toggle="pill" href="#general_information">General Information</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#recruitment">Recruitment</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="tab-content">
+      <!-- General Information Pane -->
+      <div class="tab-pane container active" id="general_information">
+        <% var mess = "/add/userID/" + result[0]._id; %>
+        <form method="POST" action="<%= mess %>">
+          <!-- Common Information For Every Company-->
+          <div id="common_info_section">
+            <h2>Common Information</h2>
+            <div class="form-row">
+              <!--Edit Company Name -->
+              <div class="col-md-4 mb-3">
+                <label for="company_name" style="text-align: right">Company Name:</label>
+                <% var name = result[0].company_name %>
+                <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name"
+                  minlength="1" maxlength="50" value= "<%= name %>" required>
+                <small id="company_name_help_block" class="form-text text-muted">
+                  Company name must be 1-50 characters long, contain letters, number and spaces, and must not contain
+                  special characters, or emoji.
+                </small>
+              </div>
+
+              <!--Edit Company Type -->
+              <div class="col-md-4 mb-3">
+                <label for="company_type">Type:</label>
+                <select class="form-control" id="company_type" name="company_type" required>
+                  <option value="">Type...</option>
+                  <% var options = [ "Limited By Guarantee", "Publicly Traded", "Privately Held", "Limited Liability Company", "Unlimited"]; %>
+                    <% for ( var i = 0; i < options.length; i++ ) { %>}
+                        <% var selected = ( result[0].company_type == options[i] ) ? "selected" : ""; %>
+                            <option <%= selected %>><%= options[ i ] %></option>
+                    <%}%>
+                </select>
+                <small id="company_type_help_block" class="form-text text-muted">
+                  Type of business.
+                </small>
+              </div>
+
+              <!--Edit Company Industry -->
+              <div class="col-md-4 mb-3">
+                <label for="company_industry">Industry:</label>
+                <select class="form-control" id="company_industry" name="company_industry" required>
+                    <option value="">Industry... </option>
+                      <% var options = [ "Accommodations", "Accounting", "Advertising", "Aerospace", "Agriculture & Agribusiness", "Air Transportation", "Apparel & Accessories", "Auto", "Banking", "Beauty & Cosmetics", "Biotechnology", "Chemical", "Communications", "Computer", "Construction", "Consulting", "Consumer Products", "Distribution", "Education", "Electronics", "Employment", "Energy", "Entertainment & Recreation", "Fashion", "Financial Services", "Fine Arts", "Food & Beverage", "Green Technology", "Health", "Industrial Products", "Information", "Information Technology", "Insurance", "Journalism & News", "Legal Services", "Manufacturing", "Media & Broadcasting", "Medical Devices & Supplies", "Mining", "Motion Pictures & Video", "Music", "Pharmaceutical", "Public Administration", "Public Relations", "Publishing", "Rail", "Real Estate", "Retail", "Service", "Shipping", "Sports", "Steel", "Technology", "Telecommunications", "Tourism", "Transportation", "Travel", "Utilities", "Video Game", "Web Services" ]; %>
+                        <% for ( var i = 0; i < options.length; i++ ) { %>}
+                          <% var selected = ( result[0].company_industry === options[i] ) ? "selected" : ""; %>
+                            <option <%= selected %>><%= options[ i ] %></option>
+                    <% } %>
+                </select>
+                <small id="company_industry_help_block" class="form-text text-muted">
+                  Field that the company is working on.
+                </small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <!-- Edit Company Founded Year -->
+              <div class="col-md-4 mb-3">
+                <label for="founded_year">Founded:</label>
+                <input type="number" class="form-control" id="founded_year" name="founded_year"  min="500" required value="<%= result[0].founded_year %>">
+                <br>
+                <!-- Rounded switch for set publicy -->
+                <label for="set_founded_year_private">Set Private:</label>
+                <label class="switch">
+                  <% if (result[0].set_founded_year_private === "off") {  %>
+                      <input type="checkbox" id="set_founded_year_private" name="set_founded_year_private">
+                  <% } else { %>
+                      <input type="checkbox" id="set_founded_year_private" name="set_founded_year_private" checked>
+                  <% } %> 
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <!-- Edit Company Size -->
+              <div class="col-md-6 mb-4">
+                <label for="company_size">Company Size:</label>
+                <select class="form-control" id="company_size" name="company_size" required>
+                  <option value="">Size...</option>
+                  <% var options = [ "Self employed", "1 - 10 employees", "11 - 50 employees", "51 - 200 employees", "201 - 500 employees", "501 - 1,000 employees", "1,001 - 5,000 employees", "5,001 - 10,000 employees", "10,001+ employees" ]; %>
+                  <% for ( var i = 0; i < options.length; i++ ) { %>}
+                    <% var selected = ( result[0].company_size == options[i] ) ? "selected" : ""; %>
+                      <option <%= selected %>><%= options[ i ] %></option>
+                <% } %>
+                </select>
+                <br>
+                <!-- Rounded switch for set publicy -->
+                <label for="set_company_size_private">Set Private:</label>
+                <label class="switch">
+                    <% if (result[0].set_company_size_private === "off") {  %>
+                      <input type="checkbox" id="set_company_size_private" name="set_company_size_private">
+                    <%} else { %>
+                      <input type="checkbox" id="set_company_size_private" name="set_company_size_private" checked>
+                    <% } %>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Some Overview -->
+          <div id="overview_section">
+            <h4>Overview</h4>
+            <small id="overview_help_block" class="form-text text-muted">
+              Overview is where you can shortly introduce your company to all users of SaigonJobs. An attractive
+              introduction would
+              very helpful and efficient for recruitment.
+            </small>
+            <textarea id="overview" name="overview" class="form-control" placeholder="Type some text..." rows="5" required><%= result[0].overview %></textarea>
+          </div>
+          <br>
+          <hr><br>
+          <!-- Headquarters and Locations-->
+          <div id="headquarters_and_location_section">
+            <h2>Headquarters and Locations</h2>
+            <br>
+            <!-- Some informations about the Headquarters. As LinkedIn did.... -->
+            <div id="headquarters_section">
+              <h4>Headquarters</h4>
+              <small id="headquarters_help_block" class="form-text text-muted">
+                Short address of Headquarters.
+              </small>
+              <div class="form-row">
+                <!-- Country -->
+                <div class="col-md-4 mb-3">
+                  <label for="headquarters_nation">Nation:</label>
+                  <input type="text" id="headquarters_nation" name="headquarters_nation" class="form-control" placeholder="Nation" required value="<%= result[0].headquarters_nation %>">
+                </div>
+                <!-- City -->
+                <div class="col-md-4 mb-3">
+                  <label for="headquarters_city">City:</label>
+                  <input type="text" id="headquarters_city" name="headquarters_city" class="form-control" placeholder="City" required value="<%= result[0].headquarters_city %>">
+                </div>
+                <!-- State-->
+                <div class="col-md-4 mb-3">
+                  <label for="headquarters_state">State:</label>
+                  <input type="text" id="headquarters_state" name="headquarters_state" class="form-control" placeholder="State" required value="<%= result[0].headquarters_state %>">
+                </div>
+              </div>
+            </div>
+            <br>
+            <!-- Locations -->
+            <div class="location_section">
+              <h4>Locations</h4>
+              <small id="location_help_block" class="form-text text-muted">
+                  You can have multiple addresses.
+                </small>
+              <div id="location" class="box">                
+                <div class="blank"></div>
+                <% if (result[0].location_address_1) { %>
+                  <% for (var i = 0; i < result[0].location_address_1.length; i++) { %>
+                      <div id="location" class="box"> 
+                              <div class="entry input-group">
+                                  <div class="form-group form-row">
+                                      <div class="col-md-6 mb-3">
+                                          <label for="location_address_1">Address</label>
+                                          <input type="text" class="form-control" name="location_address_1" id="location_address_1" placeholder="1234 Main St" required value="<%= result[0].location_address_1[i] %>">
+                                      </div>
+                                      <div class="col-md-6 mb-3">
+                                          <label for="location_address_2">Address 2</label>
+                                          <input type="text" class="form-control" name="location_address_2" id="location_address_2" placeholder="Apartment, studio, or floor" value="<%= result[0].location_address_2[i] %>">
+                                      </div>
+                                      <div class="form-row">
+                                          <div class="form-group col-md-4">
+                                              <label for="location_nation">Nation</label>
+                                              <input type="text" id="location_nation" name="location_nation" class="form-control" placeholder="Nation" required value="<%= result[0].location_nation[i] %>">
+                                           </div>
+                                           <div class="form-group col-md-4"> <label for="location_city">City / Province</label>
+                                              <input type="text" id="location_city" name="location_city" class="form-control" placeholder="City / Province" required value="<%= result[0].location_city[i] %>">
+                                          </div> <div class="form-group col-md-4">
+                                              <label for="location_state">State / District</label>
+                                              <input type="text" id="location_state" name="location_state" class="form-control" placeholder="State / District" required value="<%= result[0].location_state[i] %>">
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <button class="location_remove btn btn-danger">Remove Location </button>
+                              <hr class="short">
+                          </div>
+                  <% } %>
+              <% } %>
+                </div>
+              </div>
+              </div>
+              <br>           
+              <button class="btn btn-primary add_location">New Location</button>
+            <br>
+          <br>
+          <hr><br>
+          <!-- Contacts -->
+          <div id="contacts_section">
+            <h2>Contacts</h2>
+            <div class="form-row">
+              <!-- Email -->
+              <div class="col-md-5">
+                <label for="company_email">Email</label>
+                <div class="input-group mb-3">
+                  <input type="email" class="form-control" id="company_email" name="company_email" placeholder="Email" required value="<%= result[0].company_email %>">
+                </div>
+                <small id="company_email_help_block" class="form-text text-muted">
+                  example1234@example.com
+                </small>
+              </div>
+              <!-- Website -->
+              <div class="col-md-5">
+                <label for="company_website">Website</label>
+                <input type="url" class="form-control" id="company_website" name="company_website" placeholder="Website" value="<%= result[0].company_website %>">
+                <small id="company_website_help_block" class="form-text text-muted">
+                  https://example.com (Optional)
+                </small>
+              </div>
+            </div>
+            <br>
+            <div class="social_section">
+              <h4>Social Media</h4>
+              <small id="social_media_help_block" name="social_media_help_block" class="form-text text-muted">
+                Social media is another place to connect to your potential employees. (Optional)
+              </small>
+              <% if (result[0].social_select.length) { %>
+                <% var options = ["Facebook", "Twitter", "Google", "LinkedIn", "Youtube", "Instagram", "Pinterest", "Snapchat", "Skype", "Dribble", "Vimeo", "Tumblr", "Vine", "Foursquare", "Flickr", "Soundcloud", "Reddit", "RSS" ]; %>
+                <% for (var i = 0; i < result[0].social_select.length; i++) { %>
+                    <div class="social_link">
+                            <div class="form-row">
+                                <div class="col-md-3 mb-3">
+                                    <select id="social_select" name="social_select" class="form-control">
+                                        <option value="">...</option>
+                                    <% for ( var j = 0; j < options.length; j++ ) { %>
+                                        <% var selected = ( result[0].social_select[i] === options[j] ) ? "selected" : ""; %>
+                                            <option <%= selected %>><%= options[ j ] %></option>
+                                    <% } %>
+                                    </select>
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    <input type="url" id="social_url" name="social_url" class="form-control" placeholder="https://example.com/" value="<%= result[0].social_url[i] %>">
+                            </div>
+                        </div>
+                    <button class="social_remove btn btn-danger">Remove Social Link</button>
+                    <hr class="short">
+                </div>
+                <% } %>
+            <% } %>
+            </div>
+            <br>
+            <!-- Add New Button -->
+            <button class="btn btn-primary add_social">Add Social Link</button>
+          </div>
+          <br>
+          <hr><br>
+          <!-- Save Button -->
+          <input type="submit" id="save" name="save" class="btn btn-primary" value="Save Company Information"
+            style="display: block; margin-left: auto; margin-right: auto;">
+        </form>   
+      </div>
+
+      <!-- Recruitment Pane -->
+      <div class="tab-pane container fade" id="recruitment">
+        <!-- Add new Job-->
+        <div id="add_new_recruitment_section">
+          <h2>Add New Job</h2>
+          <!-- Describe the Job -->
+          <div id="job_describe_section">
+            <form method="POST" action="<%= mess %>">
+              <div class="form-row">
+                <!-- Job Title -->
+                <div class="col-md-4 mb-3">
+                  <div id="_job_title">
+                    <label for="job_title">Job Title</label>
+                    <input type="text" id="job_title" name="job_title" class="form-control" minlength="1" maxlength="50"
+                      required>
+                    <small id="job_title_help_block" class="form-text text-muted">
+                      Job title cannot be longer than 50 characters.
+                    </small>
+                  </div>
+                </div>
+                <!-- Employment Type -->
+                <div class="col-md-4 mb-3">
+                  <div id="__employment_type">
+                    <label for="employment_type">Employment Type</label>
+                    <select name="employment_type"class="form-control" required>
+                      <option value="">Choose one</option>
+                      <option>Full-time</option>
+                      <option>Part-time</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Number of Applicants -->
+                <div class="col-md-4 mb-3">
+                  <div id="_num_applicants">
+                    <label for="num_applicants">Number of Applicants</label>
+                    <input type="number" id="num_applicants" name="num_applicants" class="form-control" min="1"
+                      required>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <!-- Location Pick -->
+                <div class="col-md-6">
+                  <div id="_job_location_pick">
+                    <label for="job_location_pick">Pick a location for the job</label>
+                    <select id="job_location_pick" name="job_location_pick" class="form-control" required>
+                      <option value="">Choose one</option>
+                      <option><span><%= result[0].headquarters_state %>, </span><span><%= result[0].headquarters_city %>, </span><span><%= result[0].headquarters_nation %></span></option>
+                      <% for (var i = 0; i < result[0].location_address_1.length; i++) { %>
+                        <option><span><%= result[0].location_address_1[i] %>, </span><span><%= result[0].location_address_2[i] %>, </span><span><%= result[0].location_state[i] %>, </span><span><%= result[0].location_city[i] %>, </span><span><%= result[0].location_nation[i] %></span></option>
+                      <% } %>
+                      
+                    </select>
+                    <small id="company_industry_help_block" class="form-text text-muted">
+                      Choose a location for the job.
+                    </small>
+                  </div>
+                </div>
+                <!-- Receive CVs From-->
+                <div class="col-md-4">
+                  <div id="job_cv_date">
+                    <label for="job_cv_date">Receive CVs From</label>
+                    <input type="date" id="job_cv_date" name="job_cv_date" class="form-control" required>
+                    <small id="job_cv_date_help_block" class="form-text text-muted">
+                      Particular date will help people a lot.
+                    </small>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <h3>Tags</h3>
+              <div class="form-row">
+                <!--Tags -->                
+                <div class="col-md-5 mb-3">  
+                  <small id="company_tags_help_block" class="form-text text-muted">
+                      You can add multiple tags for the job, but at least one is required. Each tag is 1 - 20 characters long, spaces are forbidden.
+                    </small>
+                    <input type="text" class="form-control" id="job_tags" name="job_tags" pattern="[/^\S+$/]+" required placeholder="Tag">  
+                    <hr class="short">
+                    <div class="job_tags_section"></div>                  
+                  <div>
+                    
+                      <input type="button" class="btn btn-primary add_job_tag" id="add_job_tag" name="add_job_tag" value="Add More Tag"> 
+                  </div>
+                </div>  
+              </div>
+              <br>
+              <!-- Introduction-->
+              <div id="job_description">
+                <h4>Description</h4>
+                <small id="overview_help_block" class="form-text text-muted">
+                  Description is where you can make an abbreviation about the job.
+                </small>
+                <textarea id="overview" name="overview" class="form-control" placeholder="Type some text..." rows="5"
+                  required></textarea>
+              </div>
+              <br>
+              <!-- Responsibilites -->
+              <div class="form-row">
+                <div class="col-md-6">
+                  <label for="job_responsibilities">Responsibilites</label>
+                  <textarea id="job_responsibilities" name="job_responsibilities" class="form-control" rows="5"
+                    placeholder="Type something..." required></textarea>
+                  <small id="job_responsibilities_help_block" class="form-text text-muted">
+                    Be as specific as possible. Responsibilites are basically what the applicants will do if they are
+                    employed.
+                  </small>
+                </div>
+                <!-- Qualifications -->
+                <div class="col-md-6">
+                  <label for="job_qualifications">Qualifications</label>
+                  <textarea id="job_qualifications" name="job_qualifications" class="form-control" rows="5"
+                    placeholder="Type something..." required></textarea>
+                  <small id="job_qualifications_help_block" class="form-text text-muted">
+                    Be as specific as possible. Qualifications are demanded skills, experiences and degrees.
+                  </small>
+                </div>
+              </div>
+              <!-- Save Recruitment Form Button -->
+              <input type="submit" id="save" name="save" class="btn btn-primary"
+                value="Save Recruitment Form" style="display: block; margin-left: auto; margin-right: auto;">
+            </form>
+          </div>
+        </div>
+        <br>
+        <hr><br>
+        <!-- Manage and Remove Section -->
+      </div>
+    </div>
+  </div>
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 myCols">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sign up</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help desk</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="social-networks">
+            <a href="#" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2019 SaigonJobs. All Rights Reserved. </p>
+        </div>
+    </footer>
+</body>
+
+</html>
+

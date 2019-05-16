@@ -27,34 +27,19 @@ $(document).ready(function() {
         $(this).parent('div').remove();
     });
 
-    // Job Industry
-    var industry_wrapper =$(".job_industry_section");
-    var industry_add_button =$(".add_industry");
-    var d_industry = '<div id="job_industry_tag" class="form-inline"><select class="form-control" id="job_industry" name="job_industry" required><option value="">Industry...</option><option>Accommodations</option><option>Accounting</option><option>Advertising</option><option>Aerospace</option><option>Agriculture & Agribusiness</option><option>Air Transportation</option><option>Apparel & Accessories</option><option>Auto</option><option>Banking</option><option>Beauty & Cosmetics</option><option>Biotechnology </option><option>Chemical </option><option>Communications</option><option>Computer</option><option>Construction</option><option>Consulting</option><option>Consumer Products</option><option>Distribution</option><option>Education</option><option>Electronics</option><option>Employment</option><option>Energy</option><option>Entertainment & Recreation</option><option>Fashion</option><option>Financial Services</option><option>Fine Arts</option><option>Food & Beverage</option><option>Green Technology</option><option>Health </option><option>Industrial Products</option><option>Information</option><option>Information Technology</option><option>Insurance</option><option>Journalism & News</option><option>Legal Services</option><option>Manufacturing</option><option>Media & Broadcasting</option><option>Medical Devices & Supplies</option><option>Mining</option><option>Motion Pictures & Video</option><option>Music</option><option>Pharmaceutical </option><option>Public Administration</option><option>Public Relations</option><option>Publishing </option><option>Rail</option><option>Real Estate</option><option>Retail</option><option>Service</option><option>Shipping</option><option>Sports</option><option>Steel</option><option>Technology </option><option>Telecommunications</option><option>Tourism</option><option>Transportation</option><option>Travel</option><option>Utilities</option><option>Video Game </option><option>Web Services </option></select> <button class="industry_remove btn btn-danger">-</button> <hr class="short"> </div>';
+    // Job Tags
+    var industry_wrapper =$(".job_tags_section");
+    var industry_add_button =$(".add_job_tag");
+    var d_industry = '<div><div id="job_tag" class="form-inline"><input type="text" class="form-control" id="job_tags" name="job_tags" pattern="[/^\\S+$/]+" required placeholder="Tag"> <button class="tags_remove btn btn-danger">-</button> </div>';
     $(industry_add_button).click(function(e) {
         e.preventDefault();        
         $(industry_wrapper).append(d_industry); //add input boxes        
     });
     
-    $(industry_wrapper).on("click", ".industry_remove", function(e) {
+    $(industry_wrapper).on("click", ".tags_remove", function(e) {
         e.preventDefault();
         $(this).parent('div').remove();
     });
-                 
-    // Job Function
-    var function_wrapper =$(".job_function_section");
-    var function_add_button =$(".add_function");
-    var d_function = '<div id="job_function_tag" class="form-inline"> <select class="form-control" id="job_function" name="job_function" required> <option>None</option> <option>Accounting</option><option>Administrative</option> <option>Arts and Design</option> <option>Business Development</option> <option>Community & Social Services</option><option>Consulting</option><option>Education</option><option>Engineering</option><option>Entrepreneurship</option><option>Finance</option><option>Healthcare Services</option><option>Human Resources</option><option>Information Technology</option><option>Legal</option><option>Marketing</option><option>Media & Communications</option><option>Military & Protective Services</option><option>Operations</option><option>Product Management</option><option>Program & Product Management</option><option>Purchasing</option><option>Quality Assurance</option><option>Real Estate</option><option>Rersearch</option><option>Sales</option>option>Support</option></select> <button class="function_remove btn btn-danger">-</button> <hr class="short"> </div>';
-   $(function_add_button).click(function(e) {
-        e.preventDefault();        
-        $(function_wrapper).append(d_function); //add input boxes        
-    });
-
-    $(function_wrapper).on("click", ".function_remove", function(e) {
-        e.preventDefault();
-        $(this).parent('div').remove();
-    });
-    
-             
-
+ 
 });
+

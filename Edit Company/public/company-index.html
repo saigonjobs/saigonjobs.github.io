@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./static/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -53,7 +53,35 @@
         </button>...</div>
       <div class="tab-pane container fade" id="about">...</div>
       <div class="tab-pane container fade" id="jobs">...</div>
-      <div class="tab-pane container fade" id="comments">...</div>
+      <div class="tab-pane container fade" id="comments">
+      
+                
+                <form method="POST" action="/">
+                  <p>Name</p><input class="form-control" type="text" name="name" placeholder="Enter Name ..."/>
+                  <span>Rate</span> <select class="form-control" type="text" name="rate">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    </select>
+                    <span>Comment</span>
+                    <input type="text" class="form-control" name="body" placeholder="Enter Comment...">
+                    <hr>
+                    <input style="display: block; margin-left: auto; margin-right: auto" type="button" class="btn btn-primary" value="Add Comment" />
+                </form>
+                    
+                   
+                </div>
+    
+                
+            </div>
+        
+        </div>
+        <div id="right">
+            
+        </div>
+      </div>
     </div>      
   </body>
 </html>

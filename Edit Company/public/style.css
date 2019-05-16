@@ -8,6 +8,10 @@ body {
   margin: 0;
 }
 
+.jumbotron-fluid{
+  margin-bottom: 0px;
+}
+
 /* Header/logo Title */
 .header {
   padding: 80px;
@@ -146,6 +150,7 @@ body {
 /* Set a specific color for each brand */
 
 /* All Social Media Button Settings*/
+ 
 .fa-facebook {
   background: #3B5998;
   color: white;
@@ -390,19 +395,95 @@ hr.short{
   width : 25%;
 }
 
-/* slideUp / slideDown */
-.box {
-  transition: all 0.4s ease-in-out;
+/* Footer Design */
+
+#myFooter {
+	background-color: #373a48;
+	color:white;
+}
+
+#myFooter .footer-copyright{
+	background-color: #383737;
+	padding-top:3px;
+	padding-bottom:3px;
+	text-align: center;
+}
+
+#myFooter .footer-copyright p{
+	margin:10px;
+	color: #ccc;
+}
+
+#myFooter ul{
+  background-color: #373a48;
+	list-style-type: none;
+    padding-left: 0;
+    line-height: 1;
+
+}
+
+#myFooter h5{
+	font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+#myFooter a{
+	color:#d2d1d1;
+	text-decoration: none;
+}
+
+#myFooter a:hover, #myFooter a:focus{
+	text-decoration: none;
+	color:white;
+}
+
+#myFooter .myCols{
+	text-align: center;
 }
 
 
-/* ////////////////////////////////////// */
-.entry:not(:first-of-type)
-{
-    margin-top: 10px;
+#myFooter .myCols li{
+  display: block;
+  float: none;
+} 
+
+#myFooter .social-networks{
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 38px;
 }
 
-.glyphicon
-{
-    font-size: 12px;
+#myFooter .social-networks a{
+    font-size: 32px;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #f9f9f9;
+    padding: 10px;
+    transition: 0.2s;
 }
+
+#myFooter .social-networks a:hover{
+	text-decoration: none;
+
+}
+
+#myFooter .facebook:hover{
+	color:#0077e2;
+}
+
+#myFooter .google:hover{
+	color:#ef1a1a;
+}
+
+#myFooter .twitter:hover{
+	color: #00aced;
+}
+
+@media screen and (max-width: 767px){
+	#myFooter {
+		text-align: center;
+	}
+}
+
