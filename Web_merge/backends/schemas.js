@@ -7,11 +7,7 @@ var connection = mongoose.createConnection("mongodb://localhost:27017/database",
 autoIncrement.initialize(connection);
 // Company Info Schema
 var company_info_schema = new mongoose.Schema({
-    username: 
-    {   
-        type: String,
-        unique: true
-    },
+    username: String,
     password: String,
     role: 
     {
@@ -29,10 +25,7 @@ var company_info_schema = new mongoose.Schema({
     headquarters_nation: String,
     headquarters_city: String,
     headquarters_state: String,
-    company_email:  {   
-        type: String,
-        unique: true
-    },
+    company_email: String,
     location_address_1: [String],
     location_address_2: [String],
     location_nation: [String],
@@ -51,11 +44,7 @@ var company_info_schema = new mongoose.Schema({
 
 // User Info Schema
 var user_info_schema = new mongoose.Schema({
-    username: 
-    {
-        type: String,
-        unique: true
-    },
+    username: String,
     password: String,
     role: 
     {
@@ -68,11 +57,7 @@ var user_info_schema = new mongoose.Schema({
     dob: String,
     address: String,
     phonenumber: String,
-    email: 
-    {
-        type: String,
-        unique: true
-    },
+    email: String,
     academiclv: String,
     graduate: String,
     cart: 

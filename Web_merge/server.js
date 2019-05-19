@@ -152,157 +152,359 @@ app.post('/add-comment/companyID/:id', function(req, res)
     res.redirect('/profile/role/company/userID/' + req.params["id"]);    
 });
 
-// VALIDATION INCOMPLETED
+
 app.post('/register_user',function(req,res){
+    var username_error = false;
+    var email_error = false;
     if (req.body.password === req.body.confirm_password)
     {
         var user_inf = new user_info(req.body);
-
-        company_info.find({}).lean().exec(function(err, infos){
+        
+        company_info.find({}).lean().exec(function(err, infos)
+        {
             if (err) throw err;
-            if (infos)
+            if (infos !== undefined)
             {
                 for (var i = 0; i < infos.length; i++)
                 {
                     if (user_inf.username === infos[i].username)
                     {
-                        throw "Error: Identical username, please choose another one.";
+                        username_error = true;
                     }
-                    if (user_inf.email === infos[i].email)
+                    if (user_inf.email === infos[i].company_email)
                     {
-                        throw "Error: Identical email, please choose another one.";
+                        email_error = true;    
                     }
                 }
             }
         })
-        
-        // Password Hashing
-        const cipher = crypto.createCipher('aes192', 'password'); 
-        // Encrypt Here
-        var encrypted = cipher.update(user_inf.password, 'sha256', 'hex');  
-        // Final Encrypted String
-        encrypted += cipher.final('hex');
-
-        user_inf.password = encrypted;
-
-        user_inf.save(function(err)
+        user_info.find({}).lean().exec(function(err, infos)
         {
             if (err) throw err;
-            console.log("New User Saved.")
-            res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");            
+            if (infos !== undefined)
+            {
+                for (var i = 0; i < infos.length; i++)
+                {
+                    if (user_inf.username === infos[i].username)
+                    {
+                        username_error = true;
+                    }
+                    if (user_inf.email === infos[i].email)
+                    {
+                        email_error = true;    
+                    }
+                }
+            }
         })
+        if(username_error)
+        {
+            res.redirect('/attempt/fail/iden_username');
+        }
+        else if (email_error)
+        {
+            res.redirect('/attempt/fail/iden_email');
+        }
+        else
+        {
+            // Password Hashing
+            const cipher = crypto.createCipher('aes192', 'password'); 
+            // Encrypt Here
+            var encrypted = cipher.update(user_inf.password, 'sha256', 'hex');  
+            // Final Encrypted String
+            encrypted += cipher.final('hex');
+
+            user_inf.password = encrypted;
+
+            user_inf.save(function(err)
+            {
+                if (err) throw err;
+                console.log("New User Saved.")
+                res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");            
+            })
+        }
     }
     else
     {
-        throw "Error: Passwords do not match.";
+        res.redirect('/attempt/fail/password');
     }
 });
 
-// VALIDATION INCOMPLETED
+
 app.post('/register_company',function(req,res){
+    var username_error = false;
+    var email_error = false;
+    var error = false;
     if (req.body.password === req.body.confirm_password)
     {
         var company_inf = new company_info(req.body);
         
-        user_info.find({}).lean().exec(function(err, infos)
+        company_info.find({}).lean().exect(function(err, infos)
         {
             if (err) throw err;
-            if (infos)
+            if (infos !== undefined)
             {
                 for (var i = 0; i < infos.length; i++)
                 {
                     if (company_inf.username === infos[i].username)
                     {
-                        throw "Error: Identical username, please choose another one.";
+                        username_error = true;
                     }
-                    if (company_inf.email === infos[i].email)
+                    if (company_inf.email === infos[i].company_email)
                     {
-                        throw  "Error: Identical email, please choose another one.";
-    
+                        email_error = true;    
                     }
                 }
             }
         })
-  
-        // Password Hashing
-        const cipher = crypto.createCipher('aes192', 'password'); 
-        // Encrypt Here
-        var encrypted = cipher.update(company_inf.password, 'sha256', 'hex');  
-        // Final Encrypted String
-        encrypted += cipher.final('hex');
-
-        company_inf.password = encrypted;
-
-
-        company_inf.save(function(err)
+        user_info.find({}).lean().exec(function(err, infos)
         {
             if (err) throw err;
-            console.log("New User Saved.")
-            res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");
+            if (infos !== undefined)
+            {
+                for (var i = 0; i < infos.length; i++)
+                {
+                    if (company_inf.username === infos[i].username)
+                    {
+                        username_error = true;
+                    }
+                    if (company_inf.email === infos[i].email)
+                    {
+                        email_error = true;    
+                    }
+                }
+            }
         })
+        
+        if (req.body.location_address_1 !== undefined)
+            if (typeof req.body.location_address_1 !== 'string')
+        {
+            for (var i = 0; i < req.body.location_address_1.length - 1; i++)
+            {
+                for (var j = i + 1; j < req.body.location_address_1.length; j++)
+                {
+                    if (req.body.location_address_1[i] === req.body.location_address_1[j]
+                        && req.body.location_address_2[i] ===req.body.location_address_2[j]
+                        && req.body.location_city[i] === req.body.location_city[j]
+                        && req.body.location_state[i] === req.body.location_state[j]
+                        && req.body.location_nation[i] === req.body.location_nation[j])
+                        error = true;
+                }
+            }
+            }
+
+        if (req.body.social_url !== undefined)
+            if (typeof req.body.social_url !== 'string')
+        {
+            for (var i = 0; i < req.body.social_url.length - 1; i++)
+            {
+                for (var j = i + 1; j < req.body.social_url.length; j++)
+                {
+                    if (req.body.social_url[i] === req.body.social_url[j])
+                        error = true;
+                }
+            }
+            }
+
+        
+        if(username_error)
+        {
+            res.redirect('/attempt/fail/iden_username');
+        }
+        else if (error)
+        {
+            res.redirect('/attempt/fail/iden_fields');
+        }
+        else if (email_error)
+        {
+            res.redirect('/attempt/fail/iden_email');
+        }
+        else
+        {
+            // Password Hashing
+            const cipher = crypto.createCipher('aes192', 'password'); 
+            // Encrypt Here
+            var encrypted = cipher.update(company_inf.password, 'sha256', 'hex');  
+            // Final Encrypted String
+            encrypted += cipher.final('hex');
+
+            company_inf.password = encrypted;
+
+
+            company_inf.save(function(err)
+            {
+                if (err) throw err;
+                console.log("New User Saved.")
+                res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");
+            })
+        }        
     }
     else
     {
-        throw "Error: Passwords do not match."
+        res.redirect('/attempt/fail/password');
     }
 });
 
 
 app.post('/edit_user_profile_submit/id/:id', function(req, res){  
     var user_profile = new user_info(req.body);
+    var email_error = false;
 
-    user_info.findOneAndUpdate({_id: req.params["id"]}, 
-    {
-        familyname: user_profile.familyname,
-        givename: user_profile.givename,
-        gender: user_profile.gender,
-        dob: user_profile.dob,
-        address: user_profile.address,
-        phonenumber: user_profile.phonenumber,
-        email: user_profile.email,
-        academiclv: user_profile.academiclv,
-        graduate: user_profile.graduate
-    }, function(err){
-        if (err) throw err;
+    company_info.find({}).lean().exect(function(err, infos)
+        {
+            if (err) throw err;
+            if (infos !== undefined)
+            {
+                for (var i = 0; i < infos.length; i++)
+                {
+                    if (user_profile.email === infos[i].company_email)
+                    {
+                        email_error = true;    
+                    }
+                }
+            }
+    });
+    user_info.find({}).lean().exec(function(err, infos)
+        {
+            if (err) throw err;
+            if (infos !== undefined)
+            {
+                for (var i = 0; i < infos.length; i++)
+                {
+                    if (req.params["id"] == infos[i]._id) continue;
+                    if (user_profile.email === infos[i].email)
+                    {
+                        email_error = true;    
+                    }
+                }
+            }
     });
 
-    res.redirect("/profile/role/user/userID/" + req.params["id"]);
+    if (email_error)
+    {
+        res.redirect('/attempt/fail/iden_email');
+    }
+    else
+    {
+        user_info.findOneAndUpdate({_id: req.params["id"]}, 
+        {
+            familyname: user_profile.familyname,
+            givename: user_profile.givename,
+            gender: user_profile.gender,
+            dob: user_profile.dob,
+            address: user_profile.address,
+            phonenumber: user_profile.phonenumber,
+            email: user_profile.email,
+            academiclv: user_profile.academiclv,
+            graduate: user_profile.graduate
+        }, function(err){
+            if (err) throw err;
+        });
+        res.redirect("/profile/role/user/userID/" + req.params["id"]);
+    }
 });
 
-// VALIDATION INCOMPLETED
+
 app.post('/edit_company_profile/userID/:id',function(req,res){
     console.log(req.body);
+    var error = false;
+    var email_error = false;
 
     // Validation & Hanlder
     if (req.body.save === 'Save Company Information')
     {
         var comp_info = new company_info(req.body);
-     
-        company_info.findOneAndUpdate({_id: req.params["id"]}, {
-            company_name: comp_info.company_name,
-            company_type: comp_info.company_type,
-            company_industry: comp_info.company_industry,
-            founded_year: comp_info.founded_year,
-            set_founded_year_private: comp_info.set_founded_year_private,
-            company_size: comp_info.company_size,
-            set_company_size_private: comp_info.set_company_size_private,
-            overview: comp_info.overview,
-            headquarters_nation: comp_info.headquarters_nation,
-            headquarters_city: comp_info.headquarters_city,
-            headquarters_state: comp_info.headquarters_state,
-            company_email: comp_info.company_email,
-            location_address_1: comp_info.location_address_1,
-            location_address_2: comp_info.location_address_2,
-            location_nation: comp_info.location_nation,
-            location_city: comp_info.location_city,
-            location_state: comp_info.location_state,
-            social_select: comp_info.social_select,
-            social_url: comp_info.social_url,
-            company_website: comp_info.company_website
-        }, {upsert:true}, function(error) {            
-            if (error) throw (error);
-            console.log("Your info has been saved!");
-        });
+        if (req.body.location_address_1 !== undefined)
+        if (typeof req.body.location_address_1 !== 'string')
+        {
+            for (var i = 0; i < req.body.location_address_1.length - 1; i++)
+            {
+                for (var j = i + 1; j < req.body.location_address_1.length; j++)
+                {
+                    if (req.body.location_address_1[i] === req.body.location_address_1[j]
+                        && req.body.location_address_2[i] ===req.body.location_address_2[j]
+                        && req.body.location_city[i] === req.body.location_city[j]
+                        && req.body.location_state[i] === req.body.location_state[j]
+                        && req.body.location_nation[i] === req.body.location_nation[j])
+                        error = true;
+                }
+            }
+        }
+
+        if (req.body.social_url !== undefined)
+        if (typeof req.body.social_url !== 'string')
+        {
+            for (var i = 0; i < req.body.social_url.length - 1; i++)
+            {
+                for (var j = i + 1; j < req.body.social_url.length; j++)
+                {
+                    if (req.body.social_url[i] === req.body.social_url[j])
+                        error = true;
+                }
+            }
+        }
+
+        company_info.find({}).lean().exec(function(err, docs)
+        {
+            if (err) throw err;
+            for (var i = 0; i < docs.length; i++)
+            {
+                if (docs[i]._id == req.session.reg_num) continue;
+                if (req.body.company_email === docs[i].company_email)
+                {
+                    email_error = true;
+                    break;
+                }
+            }
+        })
+        user_info.find({}).lean().exec(function(err, docs)
+        {
+            if (err) throw err;
+            for (var i = 0; i < docs.length; i++)
+            {                
+                if (req.body.company_email === docs[i].email)
+                {
+                    email_error = true;
+                    break;
+                }
+            }
+        })
+
+        if (!error)
+        {
+            company_info.findOneAndUpdate({_id: req.params["id"]}, {
+                company_name: comp_info.company_name,
+                company_type: comp_info.company_type,
+                company_industry: comp_info.company_industry,
+                founded_year: comp_info.founded_year,
+                set_founded_year_private: comp_info.set_founded_year_private,
+                company_size: comp_info.company_size,
+                set_company_size_private: comp_info.set_company_size_private,
+                overview: comp_info.overview,
+                headquarters_nation: comp_info.headquarters_nation,
+                headquarters_city: comp_info.headquarters_city,
+                headquarters_state: comp_info.headquarters_state,
+                company_email: comp_info.company_email,
+                location_address_1: comp_info.location_address_1,
+                location_address_2: comp_info.location_address_2,
+                location_nation: comp_info.location_nation,
+                location_city: comp_info.location_city,
+                location_state: comp_info.location_state,
+                social_select: comp_info.social_select,
+                social_url: comp_info.social_url,
+                company_website: comp_info.company_website
+            }, {upsert:true}, function(error) {            
+                if (error) throw (error);
+                console.log("Your info has been saved!");
+            });
+        }
+        else if (error)
+        {
+            res.redirect('/attempt/fail/iden_fields');
+        }
+        else if (email_error)
+        {
+            res.redirect('/attempt/fail/iden_email');
+        }
     
     }
     else if (req.body.save === 'Save Recruitment Form')
@@ -315,21 +517,29 @@ app.post('/edit_company_profile/userID/:id',function(req,res){
                 for (var j = i + 1; j < req.body.job_tags.length; j++)
                 {
                     if (req.body.job_tags[i] === req.body.job_tags[j]) 
-                        throw "Error: Identical Tags!";
+                    {
+                        res.redirect('/attempt/fail/iden_tags');
+                        error = true;
+                    }                        
                 }
             }
         }
 
-        var recruitment = new job_recruitment(req.body);
-        recruitment.company_id = req.params["id"];
-
-        recruitment.save(function(err){
-            if (err) throw (err);
-            console.log("Your recruitment has been saved.");            
-        })
+        if (!error)
+        {
+            var recruitment = new job_recruitment(req.body);
+            recruitment.company_id = req.params["id"];
+    
+            recruitment.save(function(err){
+                if (err) throw (err);
+                console.log("Your recruitment has been saved.");            
+            });
+        }       
     }    
-
-    res.redirect("/profile/role/company/userID/" + req.params["id"]);
+    if (!error && !email_error)
+    {
+        res.redirect("/profile/role/company/userID/" + req.params["id"]);
+    }   
 });
 
 app.post('/add_job=:job_id', function(req, res){
@@ -337,12 +547,19 @@ app.post('/add_job=:job_id', function(req, res){
     date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 
     user_info.update({_id: req.session.reg_num}, { $push: { cart: {job_id: req.params["job_id"], date: date } }}, (err, result) => {
-    if (err) {
-      return console.log(err);
-    }
+        if (err) {
+            return console.log(err);
+        }
+    });
+    job_recruitment.update({_id: req.params["job_id"]}, { $push: { applicants: {id: req.session.reg_num, date: date } }}, (err, result) => {
+        if (err) {
+          return console.log(err);
+        }
+    });
+
     res.sendStatus(201);
   });
-});
+
 
 // Index page.
 // app.get('/' at searchRoute).
@@ -359,7 +576,7 @@ app.get('/login', function(req, res, next){
 });
 
 // Display the sites
-// Accesses to sites, INCOMPLETE, NEED USER APLLIED LIST FOR COMPANY PAGE
+// Accesses to sites
 app.get('/profile/role/:role/userID/:id', function(req, res, next)
 {
     // Go to company sites
@@ -390,8 +607,8 @@ app.get('/profile/role/:role/userID/:id', function(req, res, next)
                                     res.render('company', {result: docs, jobs: jobs, personal: arr});
                                 }
                             });
-                        }
-                        else
+                        }                       
+                        else 
                             res.render('company', {result: docs, jobs: jobs, personal: [req.session.reg_num, req.session.role]});
                     }
                     else      
@@ -478,7 +695,7 @@ app.get('/user_log', function(req, res, next){
     }
     else
     {
-        res.render('login_user.ejs');
+        res.render('login_user.ejs', {message: undefined});
     }
 })
 
@@ -491,7 +708,7 @@ app.get('/company_log', function(req, res, next){
     }
     else
     {
-        res.render('login_comp.ejs');
+        res.render('login_comp.ejs', {message: undefined});
     }
 })
 
