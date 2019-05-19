@@ -249,7 +249,7 @@ app.post('/register_company',function(req,res){
                     {
                         username_error = true;
                     }
-                    if (company_inf.email === infos[i].company_email)
+                    if (company_inf.company_email === infos[i].company_email)
                     {
                         email_error = true;    
                     }
@@ -267,7 +267,7 @@ app.post('/register_company',function(req,res){
                     {
                         username_error = true;
                     }
-                    if (company_inf.email === infos[i].email)
+                    if (company_inf.company_email === infos[i].email)
                     {
                         email_error = true;    
                     }
