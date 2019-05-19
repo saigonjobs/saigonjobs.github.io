@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Register As Company</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/static/script_T.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/style_bar.css">
+  
+</head>
+
+<body>
+  <div class="header">    
+  </div>
+
+
+  <!-- Tab panes -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="tab-content">
+      <!-- General Information Pane -->
+      <div class="tab-pane container active" id="general_information">
+        <form method="POST" action="/register_company">
+          <div id="username_password_section">
+            <h2>Username and Password</h2>
+              <div class="form-row">
+                  <!--Edit Company Type -->
+                  <div class="col-md-8 mb-3">
+                    <span>Username</span>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                  </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="col-md-6 mb-3">
+                      <span>Password</span>
+                      <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <span>Confirm Password</span>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                      </div>
+                  </div>
+          </div>
+          <hr>
+          <!-- Common Information For Every Company-->
+          <div id="common_info_section">
+            <h2>Common Information</h2>
+            <div class="form-row">
+              <!--Edit Company Name -->
+              <div class="col-md-4 mb-3">
+                <label for="company_name" style="text-align: right">Company Name:</label>
+                <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name"
+                  minlength="1" maxlength="50" required>
+                <small id="company_name_help_block" class="form-text text-muted">
+                  Company name must be 1-50 characters long.
+                </small>
+              </div>
+
+              <!--Edit Company Type -->
+              <div class="col-md-4 mb-3">
+                <label for="company_type">Type:</label>
+                <select class="form-control" id="company_type" name="company_type" required>
+                  <option value="">Type...</option>
+                  <option>Limited By Guarantee</option>
+                  <option>Publicly Traded</option>
+                  <option>Privately Held</option>
+                  <option>Limited Liability Company</option>
+                  <option>Unlimited</option>
+                </select>
+                <small id="company_type_help_block" class="form-text text-muted">
+                  Type of business.
+                </small>
+              </div>
+
+              <!--Edit Company Industry -->
+              <div class="col-md-4 mb-3">
+                <label for="company_industry">Industry:</label>
+                <select class="form-control" id="company_industry" name="company_industry" required>
+                  <option value="">Industry...</option>
+                  <option>Accommodations</option>
+                  <option>Accounting</option>
+                  <option>Advertising</option>
+                  <option>Aerospace</option>
+                  <option>Agriculture & Agribusiness</option>
+                  <option>Air Transportation</option>
+                  <option>Apparel & Accessories</option>
+                  <option>Auto</option>
+                  <option>Banking</option>
+                  <option>Beauty & Cosmetics</option>
+                  <option>Biotechnology </option>
+                  <option>Chemical </option>
+                  <option>Communications</option>
+                  <option>Computer</option>
+                  <option>Construction</option>
+                  <option>Consulting</option>
+                  <option>Consumer Products</option>
+                  <option>Distribution</option>
+                  <option>Education</option>
+                  <option>Electronics</option>
+                  <option>Employment</option>
+                  <option>Energy</option>
+                  <option>Entertainment & Recreation</option>
+                  <option>Fashion</option>
+                  <option>Financial Services</option>
+                  <option>Fine Arts</option>
+                  <option>Food & Beverage</option>
+                  <option>Green Technology</option>
+                  <option>Health </option>
+                  <option>Industrial Products</option>
+                  <option>Information</option>
+                  <option>Information Technology</option>
+                  <option>Insurance</option>
+                  <option>Journalism & News</option>
+                  <option>Legal Services</option>
+                  <option>Manufacturing</option>
+                  <option>Media & Broadcasting</option>
+                  <option>Medical Devices & Supplies</option>
+                  <option>Mining</option>
+                  <option>Motion Pictures & Video</option>
+                  <option>Music</option>
+                  <option>Pharmaceutical </option>
+                  <option>Public Administration</option>
+                  <option>Public Relations</option>
+                  <option>Publishing </option>
+                  <option>Rail</option>
+                  <option>Real Estate</option>
+                  <option>Retail</option>
+                  <option>Service</option>
+                  <option>Shipping</option>
+                  <option>Sports</option>
+                  <option>Steel</option>
+                  <option>Technology </option>
+                  <option>Telecommunications</option>
+                  <option>Tourism</option>
+                  <option>Transportation</option>
+                  <option>Travel</option>
+                  <option>Utilities</option>
+                  <option>Video Game </option>
+                  <option>Web Services </option>
+                </select>
+                <small id="company_industry_help_block" class="form-text text-muted">
+                  Field that the company is working on.
+                </small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <!-- Edit Company Founded Year -->
+              <div class="col-md-4 mb-3">
+                <label for="founded_year">Founded:</label>
+                <input type="number" class="form-control" id="founded_year" name="founded_year" value="1900" min="500"
+                  required>
+                <br>
+                <!-- Rounded switch for set publicy -->
+                <label for="set_founded_year_private">Set Private:</label>
+                <label class="switch">
+                  <input type="checkbox" id="set_founded_year_private" name="set_founded_year_private">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <!-- Edit Company Size -->
+              <div class="col-md-6 mb-4">
+                <label for="company_size">Company Size:</label>
+                <select class="form-control" id="company_size" name="company_size" required>
+                  <option value="">Size...</option>
+                  <option>Self employed</option>
+                  <option>1 - 10 employees</option>
+                  <option>11 - 50 employees</option>
+                  <option>51 - 200 employees</option>
+                  <option>201 - 500 employees</option>
+                  <option>501 - 1,000 employees</option>
+                  <option>1,001 - 5,000 employees</option>
+                  <option>5,001 - 10,000 employees</option>
+                  <option>10,001+ employees</option>
+                </select>
+                <br>
+                <!-- Rounded switch for set publicy -->
+                <label for="set_company_size_private">Set Private:</label>
+                <label class="switch">
+                  <input type="checkbox" id="set_company_size_private" name="set_company_size_private">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Some Overview -->
+          <div id="overview_section">
+            <h4>Overview</h4>
+            <small id="overview_help_block" class="form-text text-muted">
+              Overview is where you can shortly introduce your company to all users of SaigonJobs. An attractive
+              introduction would
+              very helpful and efficient for recruitment.
+            </small>
+            <textarea id="overview" name="overview" class="form-control" placeholder="Type some text..." rows="5"
+              required></textarea>
+          </div>
+          <br>
+          <hr><br>
+          <!-- Headquarters and Locations-->
+          <div id="headquarters_and_location_section">
+            <h2>Headquarters and Locations</h2>
+            <br>
+            <!-- Some informations about the Headquarters. As LinkedIn did.... -->
+            <div id="headquarters_section">
+              <h4>Headquarters</h4>
+              <small id="headquarters_help_block" class="form-text text-muted">
+                Short address of Headquarters.
+              </small>
+              <div class="form-row">
+                <!-- Country -->
+                <div class="col-md-4 mb-3">
+                  <label for="headquarters_nation">Nation:</label>
+                  <input type="text" id="headquarters_nation" name="headquarters_nation" class="form-control"
+                    placeholder="Nation" required>
+                </div>
+                <!-- City -->
+                <div class="col-md-4 mb-3">
+                  <label for="headquarters_city">City:</label>
+                  <input type="text" id="headquarters_city" name="headquarters_city" class="form-control"
+                    placeholder="City" required>
+                </div>
+                <!-- State-->
+                <div class="col-md-4 mb-3">
+                  <label for="headquarters_state">State:</label>
+                  <input type="text" id="headquarters_state" name="headquarters_state" class="form-control"
+                    placeholder="State" required>
+                </div>
+              </div>
+            </div>
+            <br>
+            <!-- Locations -->
+            <div class="location_section">
+              <h4>Locations</h4>
+              <small id="location_help_block" class="form-text text-muted">
+                  You can have multiple addresses.
+                </small>
+              <div id="location" class="box">                
+                <div class="blank"></div>
+                </div>
+              </div>
+              </div>
+              <br>           
+              <button class="btn btn-primary add_location">New Location</button>
+            <br>
+          <br>
+          <hr><br>
+          <!-- Contacts -->
+          <div id="contacts_section">
+            <h2>Contacts</h2>
+            <div class="form-row">
+              <!-- Email -->
+              <div class="col-md-5">
+                <label for="company_email">Email</label>
+                <div class="input-group mb-3">
+                  <input type="email" class="form-control" id="company_email" name="company_email" placeholder="Email"
+                    required>
+                </div>
+                <small id="company_email_help_block" class="form-text text-muted">
+                  example1234@example.com
+                </small>
+              </div>
+              <!-- Website -->
+              <div class="col-md-5">
+                <label for="company_website">Website</label>
+                <input type="url" class="form-control" id="company_website" name="company_website"
+                  placeholder="Website">
+                <small id="company_website_help_block" class="form-text text-muted">
+                  https://example.com (Optional)
+                </small>
+              </div>
+            </div>
+            <br>
+            <div class="social_section">
+              <h4>Social Media</h4>
+              <small id="social_media_help_block" name="social_media_help_block" class="form-text text-muted">
+                Social media is another place to connect to your potential employees. (Optional)
+              </small>
+            </div>
+            <br>
+            <!-- Add New Button -->
+            <button class="btn btn-primary add_social">Add Social Link</button>
+          </div>
+          <br>
+          <hr><br>
+          <!-- Save Button -->
+          <input type="submit" id="save" name="save" class="btn btn-success btn-lg" value="Register"
+            style="display: block; margin-left: auto; margin-right: auto;">
+        </form>   
+      </div>
+
+    </div>
+  </div>
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 myCols">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="./">Home</a></li>
+                        <li><a href="#">Sign up</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help desk</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="social-networks">
+            <a href="#" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2019 SaigonJobs. All Rights Reserved. </p>
+        </div>
+    </footer>
+</body>
+
+</html>

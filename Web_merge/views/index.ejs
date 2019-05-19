@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>SaigonJobs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="/static/welcomeStyle.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- NAVBAR START HERE -->
+    <nav id="navBar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="mx-auto order-lg-1 d-flex">
+            <a class="navbar-brand mx-auto" href="#">
+                <img src="/static/logo.png" alt="">
+            </a>
+            <a class="navbar-brand mx-auto" href="#">SaigonJobs</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse w-100 order-1 order-lg-0 dual-collapse2" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">IT Jobs</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Top Company
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">VINASA Rankings</a>
+                        <a class="dropdown-item" href="#">Top rating</a>
+                        <a class="dropdown-item" href="#">Top recruiment</a>
+                    </div>
+                </li>
+                <li class="nav-item my-lg-0">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse w-100 order-2 dual-collapse2" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <% if (personal[0] !== undefined) { %> 
+                    <li class="nav-item active">
+                    <% var link = "/profile/role" + personal[1] + "/userID/" + personal[0] %>                    
+                        <a class="nav-link" href="<%= link %>">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Sign Out</a>
+                    </li>                    
+                <% } else {%> 
+                <li class="nav-item">
+                        <a class="nav-link" href="/login">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Sign Up</a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+    <!-- NAVBAR END HERE -->
+    <!-- ///////////////////////// MAIN CONTENT START HERE /////////////////////////-->
+    
+    <div id="searchBar" class="searchContainer flex-wrap align-content-center">
+        <!-- SEARCH BAR START HERE -->
+        <form class="form-inline justify-content-center align-content-center w-75 my-5 flex-nowrap" method="GET" id="searchForm">
+            <input class="form-control form-control-lg w-100" type="search" placeholder="Search" aria-label="Search" id="searchTxt" name="searchText">
+            <button class="btn btn-lg btn-success" type="submit" id="searchBtn">Search</button>
+        </form>
+        <!-- SEARCH BAR END HERE -->
+
+        <!-- JOBS NEWS START HERE -->
+        <% if (result.length != 0) { %> 
+            <% for (var i = 0; i < result.length; i++) {%>
+                <div class="card job w-75 m-2 shadow rounded" id="">
+                    <div class="job_content clearfix p-2 ">
+                        <div class="logo float-left w-25 justify-content-center align-items-center d-flex">
+                            <% img_url = "/static/logo.png" %>
+                            <img src= <%= img_url %> alt="" class="mt-2 w-75">
+                        </div>
+                        <div class="job_description float-left w-75">
+                            <% detail_url = "/detail/" + result[i]._id %>
+                            <%if (detail === false){%>
+                            <a target = "_blank" href= <%= detail_url %> >
+                                <h1 class="title"> <%= result[i].job_title %> </h1>
+                            </a>
+                            <%} else {%>
+                                <h1 class="title"> <%= result[i].job_title %> </h1>
+                            <% } %>
+                            <p class="address"> <%= result[i].job_location_pick%> </p>                            
+                            <!--DETAIL INFOMATION START-->
+                            <%if(detail === true){%>
+                            <div class="description">
+                                <h3>Overview</h3>
+                                <p><%= result[i].overview %></p>
+                            </div>
+                            <div class="responsibilities">
+                                <h3>Responsibilities</h3>
+                                <p><%= result[i].job_responsibilities %></p>
+                            </div>
+                            <div class="qualification">
+                                <h3>Qualifications</h3>
+                                <p><%= result[i].job_qualifications %></p>
+                            </div>
+                            <div class="links">
+                                <h3>Company</h3>
+                                <% var link = "/profile/role/company/userID/" + result[i].company_id; %>
+                                <a href= "<%= link %>"><p><%= company[0].company_name %></p> </a>
+                            </div>
+                            <% } %>
+                            <!--DETAIL INFOMATION END-->
+                            <div class="d-flex text-secondary justify-content-between">
+                                <div class="tagList">
+                                    <% result[i].job_tags.forEach(function(item){%>
+                                    <span class="border border-secondary mx-2 p-1"><%= item %></span>
+                                    <%})%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        <% } %>
+        
+                
+        <!-- JOBS NEWS END HERE -->
+    </div>
+    
+
+    
+    <!--///////////////////////// MAIN CONTENT END HERE /////////////////////////-->
+    <!--Footer start here-->
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 myCols">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sign up</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help desk</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="social-networks">
+            <a href="#" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2019 SaigonJobs. All Rights Reserved. </p>
+        </div>
+    </footer>
+    <!--Footer end here-->
+    <div class="fixed-bottom">
+        <a href="#">
+            <img class="backToTop" src="/static/backToTop.png" alt="">
+        </a>
+    </div>
+    <!--Script Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

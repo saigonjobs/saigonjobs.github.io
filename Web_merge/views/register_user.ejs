@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Register As Original User</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/static/script_T.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/style_bar.css">
+  
+</head>
+
+<body>
+  <div class="header">    
+  </div>
+
+
+  <!-- Tab panes -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="tab-content">
+      <!-- General Information Pane -->
+      <div class="tab-pane container active" id="general_information">
+        <form method="POST" action="/register_user">
+          <div id="username_password_section">
+            <h2>Username and Password</h2>
+              <div class="form-row">
+                  <!--Edit Company Type -->
+                  <div class="col-md-8 mb-3">
+                    <span>Username</span>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                  </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="col-md-6 mb-3">
+                      <span>Password</span>
+                      <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <span>Confirm Password</span>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                      </div>
+                  </div>
+          </div>
+          <hr>
+          <!-- Common Information For Every Company-->
+          <div id="info_section">           
+            <div class="form-row">
+              <!--Edit Company Name -->
+              <div class="col-md-8 mb-3">
+                <label for="family_name" style="text-align: right">Family Name:</label>
+                <input type="text" class="form-control" id="familyname" name="familyname" placeholder="Family Name" required>                
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="given_name" style="text-align: right">Given Name:</label>
+                <input type="text" class="form-control" id="givename" name="givename" placeholder="Given Name" required>                
+              </div>
+            </div>
+
+            <div class="form-row">              
+              <div class="col-md-2 mb-3">
+                    <label for="gender">Gender </label>
+                    <select class="form-control" id="gender" name="gender" required>
+                      <option value="">Choose...</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Other</option>
+                    </select>                    
+                  </div>
+
+              <div class="col-md-2 mb-4">
+                <label for="dob">Date of Birth</label>
+                    <input class="form-control" type="date" id="dob" name="dob" required>
+              </div>
+
+              <div class="col-md-8 mb-4">
+                    <label for="dob">Address</label>
+                        <input class="form-control" type="text" id="address" name="address" placeholder="1234 Ly Thuong Kiet" required>
+                  </div>
+            </div>
+            <div class="form-row">              
+                    <div class="col-md-4 mb-3">
+                          <label for="phonenumber">Phone number </label>
+                          <input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="0969996699" required>                                      
+                        </div>
+      
+                    <div class="col-md-8 mb-4">
+                      <label for="dob">Email address</label>
+                          <input type="text" class="form-control" id="email" name="email" placeholder="saigonjobs@gmail.com" required>
+                    </div>
+                </div>
+                <div class="form-row">              
+                        <div class="col-md-6 mb-3">
+                              <label for="aca">Academic level</label>
+                              <input type="text" class="form-control" id="academiclv" name="academiclv" required>                                      
+                            </div>
+          
+                        <div class="col-md-6 mb-4">
+                          <label for="dob">Graduated from</label>
+                              <input type="text" class="form-control" id="graduate" name="graduate" required>
+                        </div>
+                    </div>
+          </div>
+          
+          <br>
+          <hr><br>
+          <!-- Save Button -->
+          <input type="submit" id="save" name="save" class="btn btn-success btn-lg" value="Register"
+            style="display: block; margin-left: auto; margin-right: auto;">
+        </form>   
+      </div>
+
+    </div>
+  </div>
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 myCols">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="./">Home</a></li>
+                        <li><a href="#">Sign up</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help desk</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="social-networks">
+            <a href="#" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2019 SaigonJobs. All Rights Reserved. </p>
+        </div>
+    </footer>
+</body>
+
+</html>

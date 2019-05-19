@@ -1,0 +1,81 @@
+<div class="col-md-3">
+        <div class="sticky-top">
+            <!-- Company Type, Industry, Founded Year, etc.. -->
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span>Rating: </span>
+                      <% if (result[0].average_rate != 0) { %>                        
+                        <span><%= result[0].average_rate %> ★</span>
+                      <% } else { %>
+                        <span>No Ratings</span>
+                      <%  } %>
+                    </li>
+                    <li class="list-group-item"><span>Company Type: </span><span><%= result[0].company_type %></span></li>
+                    <li class="list-group-item"><span>Company Industry: </span><span><%= result[0].company_industry %></span></li>
+                    <% if (result[0].set_founded_year_private === "off") { %>
+                      <li class="list-group-item"><span>Founded Year: </span><span><%= result[0].founded_year %></span></li>
+                    <% } %>
+                    <% if (result[0].set_company_size_private === "off") { %>
+                      <li class="list-group-item"><span>Company Size: </span><span><%= result[0].company_size %></span></li>
+                    <% } %>
+                    <li class="list-group-item"><span>Headquarters: </span><span><%= result[0].headquarters_state %></span><span>, <%= result[0].headquarters_city %></span><span>, <%= result[0].headquarters_nation %></span> </li>
+                  </ul>
+              </div>
+              <br>
+              
+            <div class="card">                                         
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><h5>Contacts</h5></li>
+                <% if (result[0].company_email) { %>
+                  <li class="list-group-item"><span>Email: </span><span><%= result[0].company_email %></span></li>
+                <% } %>                      
+                <% if (result[0].company_website) { %>
+                  <li class="list-group-item"><span>Website: </span><span><%= result[0].company_website %></span></li>
+                <% } %>
+                  <li class="list-group-item">
+                        <% if (result[0].social_select) {%>
+                          <% for (var i = 0; i < result[0].social_select.length; i++) { %>                            
+                            <% if (result[0].social_select[i] === "social_facebook") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-facebook"></a>                              
+                            <%} else if (result[0].social_select[i] === "social_twitter") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-twitter"></a>
+                            <%} else if (result[0].social_select[i] === "social_google") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-google"></a>
+                            <%} else if (result[0].social_select[i] === "social_linkedin") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-linkedin"></a>
+                            <%} else if (result[0].social_select[i] === "social_youtube") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-youtube"></a> %>
+                            <%} else if (result[0].social_select[i] === "social_insta") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-instagram"></a>
+                            <%} else if (result[0].social_select[i] === "social_pinterest") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-pinterest"></a>
+                            <%} else if (result[0].social_select[i] === "social_snapchat") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-snapchat"></a>
+                            <%} else if (result[0].social_select[i] ==="social_skype") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-skype"></a>
+                            <%} else if (result[0].social_select[i] === "social_dribble") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-dribbble"></a>
+                            <%} else if (result[0].social_select[i] === "social_vimeo") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-vimeo"></a> 
+                            <%} else if (result[0].social_select[i] === "social_tumblr") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-tumblr"></a> 
+                            <%} else if (result[0].social_select[i] === "social_vine") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-vine"></a> 
+                            <%} else if (result[0].social_select[i] === "social_foursquare") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-foursquare"></a>
+                            <%} else if (result[0].social_select[i] === "social_flickr") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-flickr"></a> 
+                            <%} else if (result[0].social_select[i] === "social_soundcloud") { %>
+                              <a href=<%= result[0].social_url[i] %> class="fa fa-soundcloud"></a> 
+                            <%} else if (result[0].social_select[i] === "social_reddit") { %>
+                                <a href=<%= result[0].social_url[i] %> class="fa fa-reddit"></a>
+                            <%} else if (result[0].social_select[i] === "social_rss") { %>
+                                <a href=<%= result[0].social_url[i] %> class="fa fa-rss"></a> 
+                           <% } %> 
+                          <% } %>
+                        <% } %> 
+                  </li>
+              </ul> 
+            </div>
+        </div>
+      </div>

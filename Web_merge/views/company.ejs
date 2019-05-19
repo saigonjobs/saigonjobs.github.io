@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Company Index</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/style_bar.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
+  </head>
+
+  <body>
+      <nav id="navBar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div class="mx-auto order-lg-1 d-flex">
+              <a class="navbar-brand mx-auto" href="#">
+                  <img src="/static/logo.png" alt="">
+              </a>
+              <a class="navbar-brand mx-auto" href="#">SaigonJobs</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          </div>
+          <div class="collapse navbar-collapse w-100 order-1 order-lg-0 dual-collapse2" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">IT Jobs</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Top Company
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">VINASA Rankings</a>
+                          <a class="dropdown-item" href="#">Top rating</a>
+                          <a class="dropdown-item" href="#">Top recruiment</a>
+                      </div>
+                  </li>
+                  <li class="nav-item my-lg-0">
+                      <a class="nav-link" href="#">About Us</a>
+                  </li>
+              </ul>
+          </div>
+          <div class="collapse navbar-collapse w-100 order-2 dual-collapse2" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                  <% if (personal[0] !== undefined) { %> 
+                    <li class="nav-item active">
+                    <% var link = "/profile/role/" + personal[1] + "/userID/" + personal[0] %>                    
+                        <a class="nav-link" href="<%= link %>">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Sign Out</a>
+                    </li>                    
+               <% } else {%> 
+                <li class="nav-item">
+                        <a class="nav-link" href="/login">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Sign Up</a>
+                    </li>
+               <% } %>
+              </ul>
+          </div>
+      </nav>
+    <div class="header" style="background: url(/static/1080377.jpg);">
+      <% if (personal[1] === 'company' && personal[0] === result[0]._id)   { %>
+        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" id="itemButton">...</button> 
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Change Avatar</a>
+          <a class="dropdown-item" href="#">Change Cover</a>
+          <a class="dropdown-item" href="#">See Full Cover Photos</a>
+          <% var link = "/edit-info/id=" + result[0]._id %>
+          <a class="dropdown-item" href="<%= link %>">Edit Company's Information</a>          
+        </div>
+      <% } %>      
+      <div class="container">
+        <div class="row">
+            <img src="/static/evely-lyt-squarewhite-4x.jpg" alt="Avatar" class="avatar img-fluid">         
+        </div>
+      </div>        
+      <h2 style="padding-left: 15%;"><%= result[0].company_name %></h2>   
+    </div>
+   
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item active">
+        <a class="nav-link active" data-toggle="pill" href="#home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#about">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#jobs">Jobs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#comments">Comments</a>
+      </li>
+      </ul>
+  
+    <!-- Tab panes -->
+    <div class="jumbotron jumbotron-fluid">
+      <div class="tab-content">
+        <div class="tab-pane container active" id="home">
+          <div class="col-md-3">
+
+            </div>
+          </div>
+
+        <div class="tab-pane container fade" id="about">
+          <div class="form-row">
+            <!-- Company Quickview Section -->
+            <%- include('about_and_contact') %>
+
+              <!-- Company Overview Section -->
+              <div class="col-md-6">
+                <div class="card">
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><h2>Overview</h2></li>
+                      <li class="list-group-item"><span><%= result[0].overview %></span></li>
+                  </ul>
+                </div>
+            </div>
+
+              <!-- Company Locations Section -->
+              <div class="col-md-3">
+                <div class="card sticky-top">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><h2>Locations</h2></li>
+                    <% if(result[0].location_address_1) { %> 
+                      <% for(var i =0; i < result[0].location_address_1.length; i++) { %>
+                        <li class="list-group-item"><span><%= result[0].location_address_1[i] %></span>
+                          <span>, <%= result[0].location_address_2[i] %></span>
+                          <span>, <%= result[0].location_state[i] %></span>
+                          <span>, <%= result[0].location_city[i] %></span>
+                          <span>, <%= result[0].location_nation[i] %></span>
+                        </li>
+                     <% } %>
+                    <% } %>
+                    </ul>
+                  </div>
+              </div>             
+          </div>          
+        </div>
+
+        <div class="tab-pane container fade" id="jobs">
+          <div class="form-row">
+              <%- include('about_and_contact') %>
+              <div class="col-md-6">
+                <% if (jobs.length != 0) { %>
+                  <% for (var i = 0; i < jobs.length; i++) { %>
+                    <div class="card">
+                      <ul class="list-group list-group-flush"> 	
+                        <li class="list-group-item"><span style="font-weight: bold; font-size: 25px"><%= jobs[i].job_title %></span> 
+                          <% if (personal[1] === 'user') { %>
+                            <% if (personal.length > 2) { %>
+                              <% var yes = false %>
+                              <% for (var j = 2; j < personal.length; j++) { %>
+                                <% if (personal[j] == jobs[i]._id) { %>
+                                  <% yes = true %>
+                                  <% break %>
+                                <%  } %>
+                              <%  } %>
+                              <% if (yes) { %>
+                                <div><i class="fa fa-check-circle" style="color: green; float: right;"></i></div>
+                              <% } else { %>
+                                <div class="add_"><button class="btn add_to_list" id="<%= jobs[i]._id %>" style="float: right; padding: 1px 2px; border: none; background-color: skyblue;"><i class="fa fa-calendar-plus-o" style="font-size: 25px;"></i> Apply </button> </div>
+                                <% } %>
+                            <% } else {%>
+                              <div class="add_"><button class="btn add_to_list" id="<%= jobs[i]._id %>" style="float: right; padding: 1px 2px; border: none; background-color: skyblue;"><i class="fa fa-calendar-plus-o" style="font-size: 25px;"></i> Apply </button> </div>
+                            <% } %>
+                          <% } %>   
+                        </li>                       
+                        <li class="list-group-item"><span>Recruiting: <%= jobs[i].num_applicants %> applicants</span></li>
+                        <li class="list-group-item"><span>Location: <%= jobs[i].job_location_pick %></span></li>
+                        <li class="list-group-item"><span>Receive CVs From: <%= jobs[i].job_cv_date %></span></li>
+                        
+                        <li class="list-group-item"><span>Tags:
+                            <% for (var j = 0; j < jobs[i].job_tags.length; j++) { %>
+                              <span><%= jobs[i].job_tags[j] %>; </span>
+                            <%  } %>
+                           
+                        </span></li>
+                      </ul>
+                    </div>
+                    <hr class="short">
+                  <%  } %>                       
+                 <% } else {%>  
+                  <div class="card">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><h4>We are not recruiting! Maybe later!</h4></li>
+                      </ul>
+                    </div>
+                  <%  } %>                      
+              </div>
+          <%- include('job_fun_facts') %>
+              
+          </div>
+        </div>
+        <div class="tab-pane container fade" id="comments">
+        <div class="form-row">
+            <%- include('about_and_contact') %>
+            <div class="col-md-6">
+              <% if (personal[1] === 'user'){ %>
+                <% var action_mess = "/add-comment/companyID/" + result[0]._id %>
+                <form method="POST" action="<%= action_mess %>">
+                  <p>Name</p><input class="form-control" type="text" id="name" name="name" placeholder="Enter Name ..."/>
+                  <span>Rate</span> <select class="form-control" id="rate" name="rate">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
+                    <span>Comment</span>
+                    <input type="text" class="form-control" id="body" name="body" placeholder="Enter Comment...">
+                    <hr>
+                    <input style="display: block; margin-left: auto; margin-right: auto" type="submit" class="btn btn-primary" value="Add Comment" >
+                </form>
+                <hr>
+                <% } %>
+              
+                    <% if (result[0].rate.length != 0) { %>
+                      <% for (var i = 0; i < result[0].rate.length; i++) { %>
+                        <div class="card">
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h2><%= result[0].rate[i].name %></h2></li>                       
+                            <li class="list-group-item"><span><%= result[0].rate[i].rate %> ★</span></li>
+                            <li class="list-group-item"><span><%= result[0].rate[i].body %></span></li>                        
+                          </ul>
+                        </div>
+                        <hr class="short">
+                      <%  } %>                       
+                     <% } else {%>  
+                      <div class="card">
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h4>No comment to view yet!</h4></li>
+                          </ul>
+                        </div>
+                      <%  } %>                
+            </div>
+          <%- include('job_fun_facts') %>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 myCols">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="./">Home</a></li>
+                        <li><a href="#">Sign up</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help desk</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 myCols">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="social-networks">
+            <a href="#" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2019 SaigonJobs. All Rights Reserved. </p>
+        </div>
+    </footer>
+  </body>
+  <script src="/static/script_B.js"></script>
+</html>
+
+
