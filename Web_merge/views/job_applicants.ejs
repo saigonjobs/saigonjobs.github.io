@@ -7,7 +7,7 @@
                 </div> 
             </div>             
             <% if (jobs !== undefined)  { %>
-               <% for (var i = 0; i < jobs.length; i++) { %>
+               <% for (var i = jobs.length - 1; i >= 0; i--) { %>
                     <% var collapse = "collapse" + i %>
                     <% var collapse1 = "#collapse" + i %>
                     <% var this_id = "heading" + i %>
@@ -23,7 +23,7 @@
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush">
                                         <% if (jobs[i].applicants !== undefined && jobs[i].applicants.length != 0)  { %>
-                                            <% for (var j = 0; j < jobs[i].applicants.length; j++)  { %>
+                                            <% for (var j = jobs[i].applicants.length - 1; j >= 0 ; j--)  { %>
                                                 <% var link = "/profile/role/user/userID/" + jobs[i].applicants[j].id %>
                                                 <li class="list-group-item"><a href="<%= link %>" target="_blank">Applicant <%= j + 1 %></a><p> Applied: <%=jobs[i].applicants[j].date %></p></li>
                                             <% } %>

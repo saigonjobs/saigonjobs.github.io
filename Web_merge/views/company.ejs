@@ -99,7 +99,7 @@
               <%- include('about_and_contact') %>
               <div class="col-md-6">
                 <% if (jobs.length != 0) { %>
-                  <% for (var i = 0; i < jobs.length; i++) { %>
+                  <% for (var i = jobs.length - 1; i >= 0 ; i--) { %>
                     <div class="card">
                       <ul class="list-group list-group-flush"> 	
                         <li class="list-group-item"><span style="font-weight: bold; font-size: 25px"><%= jobs[i].job_title %></span> 
@@ -176,7 +176,7 @@
                 <% } %>
               
                     <% if (result[0].rate.length != 0) { %>
-                      <% for (var i = 0; i < result[0].rate.length; i++) { %>
+                      <% for (var i = result[0].rate.length - 1; i >= 0; i--) { %>
                         <div class="card">
                           <ul class="list-group list-group-flush">
                             <li class="list-group-item"><h2><%= result[0].rate[i].name %></h2></li>                       
