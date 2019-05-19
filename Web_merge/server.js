@@ -238,7 +238,7 @@ app.post('/register_company',function(req,res){
     {
         var company_inf = new company_info(req.body);
         
-        company_info.find({}).lean().exect(function(err, infos)
+        company_info.find({}).lean().exec(function(err, infos)
         {
             if (err) throw err;
             if (infos !== undefined)
@@ -349,7 +349,7 @@ app.post('/edit_user_profile_submit/id/:id', function(req, res){
     var user_profile = new user_info(req.body);
     var email_error = false;
 
-    company_info.find({}).lean().exect(function(err, infos)
+    company_info.find({}).lean().exec(function(err, infos)
         {
             if (err) throw err;
             if (infos !== undefined)
