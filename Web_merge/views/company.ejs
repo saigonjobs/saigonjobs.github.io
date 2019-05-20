@@ -16,14 +16,8 @@
       <%- include('sgj_bar') %>
     <div class="header" style="background: url(/static/1080377.jpg);">
       <% if (personal[1] === 'company' && personal[0] === result[0]._id)   { %>
-        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" id="itemButton">...</button> 
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Change Avatar</a>
-          <a class="dropdown-item" href="#">Change Cover</a>
-          <a class="dropdown-item" href="#">See Full Cover Photos</a>
-          <% var link = "/edit-info/id=" + result[0]._id %>
-          <a class="dropdown-item" href="<%= link %>">Edit Company's Information</a>          
-        </div>
+        <% var link = "/edit-info/id=" + result[0]._id %>
+        <button style="float: right;" type="button" class="btn btn-light"><a style="color: black; text-decoration: none;" href="<%= link %>">Edit Information</a></button> 
       <% } %>      
       <div class="container">
         <div class="row">

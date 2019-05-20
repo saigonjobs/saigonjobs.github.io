@@ -17,13 +17,7 @@
 
 <body>
     <%- include('sgj_bar') %>
-  <div class="header">
-    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" id="itemButton">...</button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Change Avatar</a>
-      <a class="dropdown-item" href="#">Change Cover</a>
-      <a class="dropdown-item" href="#">See Full Cover Photos</a>
-    </div>
+  <div class="header">    
     <div class="container">
       <div class="row">
         <img src="/static/evely-lyt-squarewhite-4x.jpg" alt="Avatar" class="avatar img-fluid">
@@ -61,8 +55,7 @@
                 <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name"
                   minlength="1" maxlength="50" value= "<%= name %>" required>
                 <small id="company_name_help_block" class="form-text text-muted">
-                  Company name must be 1-50 characters long, contain letters, number and spaces, and must not contain
-                  special characters, or emoji.
+                  Company name must be 1-50 characters long.
                 </small>
               </div>
 

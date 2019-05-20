@@ -4,8 +4,8 @@
             <div class="card">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><span>Rating: </span>
-                      <% if (result[0].average_rate != 0) { %>                        
-                        <span><%= result[0].average_rate %> ★</span>
+                      <% if (result[0].average_rate > 0) { %>                        
+                        <span><%= result[0].average_rate %> / 5★</span>
                       <% } else { %>
                         <span>No Ratings</span>
                       <%  } %>

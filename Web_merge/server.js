@@ -141,7 +141,7 @@ app.post('/add-comment/companyID/:id', function(req, res)
             {
                 avg_rate = (docs[0].average_rate * (docs[0].rate.length - 1) + docs[0].rate[docs[0].rate.length - 1].rate) / docs[0].rate.length;
             }
-            avg_rate = +(Math.round(avg_rate + "e+2")  + "e-2");
+            avg_rate = +(Math.round(avg_rate + "e+1")  + "e-1");
             company_info.findOneAndUpdate({_id: req.params["id"]}, {average_rate: avg_rate}, {upsert: true}, function(err)
             {                
                 if (err) throw err;
@@ -746,7 +746,6 @@ app.get('/edit-info/id=:id', function(req, res)
             job_recruitment.find({company_id: req.session.reg_num}).lean().exec(function(error, jobs)
             {
                 if (error) throw error;
-                console.log(docs[0]._id);
                 res.render('edit_company_info.ejs', {result: docs, jobs: jobs, personal: [req.session.reg_num, req.session.role]});
             });                         
         });
