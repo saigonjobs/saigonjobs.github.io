@@ -154,8 +154,7 @@ app.post('/add-comment/companyID/:id', function(req, res)
 
 
 app.post('/register_user',function(req,res){
-    var username_error = false;
-    var email_error = false;
+    var unable_to_write = false;
     if (req.body.password === req.body.confirm_password)
     {
         var user_inf = new user_info(req.body);
@@ -169,59 +168,63 @@ app.post('/register_user',function(req,res){
                 {
                     if (user_inf.username === infos[i].username)
                     {
-                        username_error = true;
+                        res.redirect('/attempt/fail/iden_username');
+                        unable_to_write = true;
+                        break;
                     }
                     if (user_inf.email === infos[i].company_email)
                     {
-                        email_error = true;    
+                        res.redirect('/attempt/fail/iden_email');
+                        unable_to_write = true;
+                        break;   
                     }
                 }
             }
-        })
-        user_info.find({}).lean().exec(function(err, infos)
-        {
-            if (err) throw err;
-            if (infos !== undefined)
+            if (!unable_to_write)
             {
-                for (var i = 0; i < infos.length; i++)
+                user_info.find({}).lean().exec(function(err, infos2)
                 {
-                    if (user_inf.username === infos[i].username)
+                    if (err) throw err;
+                    if (infos2 !== undefined)
                     {
-                        username_error = true;
+                        for (var i = 0; i < infos2.length; i++)
+                        {
+                            if (user_inf.username === infos2[i].username)
+                            {
+                                res.redirect('/attempt/fail/iden_username');
+                                unable_to_write = true;
+                                break;
+                            }
+                            if (user_inf.company_email === infos2[i].email)
+                            {
+                                res.redirect('/attempt/fail/iden_email');
+                                unable_to_write = true;
+                                break; 
+                            }
+                        }
                     }
-                    if (user_inf.email === infos[i].email)
+                
+                    if (!unable_to_write)
                     {
-                        email_error = true;    
+                        // Password Hashing
+                        const cipher = crypto.createCipher('aes192', 'password'); 
+                        // Encrypt Here
+                        var encrypted = cipher.update(user_inf.password, 'sha256', 'hex');  
+                        // Final Encrypted String
+                        encrypted += cipher.final('hex');
+
+                        user_inf.password = encrypted;
+
+                        user_inf.save(function(err)
+                        {
+                            if (err) throw err;
+                            console.log("New User Saved.")
+                            res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");            
+                        })
                     }
-                }
+                });
             }
-        })
-        if(username_error)
-        {
-            res.redirect('/attempt/fail/iden_username');
-        }
-        else if (email_error)
-        {
-            res.redirect('/attempt/fail/iden_email');
-        }
-        else
-        {
-            // Password Hashing
-            const cipher = crypto.createCipher('aes192', 'password'); 
-            // Encrypt Here
-            var encrypted = cipher.update(user_inf.password, 'sha256', 'hex');  
-            // Final Encrypted String
-            encrypted += cipher.final('hex');
-
-            user_inf.password = encrypted;
-
-            user_inf.save(function(err)
-            {
-                if (err) throw err;
-                console.log("New User Saved.")
-                res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");            
-            })
-        }
+        });
     }
     else
     {
@@ -231,9 +234,7 @@ app.post('/register_user',function(req,res){
 
 
 app.post('/register_company',function(req,res){
-    var username_error = false;
-    var email_error = false;
-    var error = false;
+    var unable_to_write = false;
     if (req.body.password === req.body.confirm_password)
     {
         var company_inf = new company_info(req.body);
@@ -247,96 +248,100 @@ app.post('/register_company',function(req,res){
                 {
                     if (company_inf.username === infos[i].username)
                     {
-                        username_error = true;
+                        res.redirect('/attempt/fail/iden_username');
+                        unable_to_write = true;
+                        break;
                     }
                     if (company_inf.company_email === infos[i].company_email)
                     {
-                        email_error = true;    
+                        res.redirect('/attempt/fail/iden_email');
+                        unable_to_write = true;
+                        break;   
                     }
                 }
+            }
+            if (!unable_to_write)
+            {
+                user_info.find({}).lean().exec(function(err, infos2)
+                {
+                    if (err) throw err;
+                    if (infos2 !== undefined)
+                    {
+                        for (var i = 0; i < infos2.length; i++)
+                        {
+                            if (company_inf.username === infos2[i].username)
+                            {
+                                res.redirect('/attempt/fail/iden_username');
+                                unable_to_write = true;
+                                break;
+                            }
+                            if (company_inf.company_email === infos2[i].email)
+                            {
+                                res.redirect('/attempt/fail/iden_email');
+                                unable_to_write = true;
+                                break; 
+                            }
+                        }
+                    }
+                    if (!unable_to_write)
+                        if (req.body.location_address_1 !== undefined)
+                            if (typeof req.body.location_address_1 !== 'string')
+                            {
+                                for (var i = 0; i < req.body.location_address_1.length - 1; i++)
+                                {
+                                    for (var j = i + 1; j < req.body.location_address_1.length; j++)
+                                    {
+                                        if (req.body.location_address_1[i] === req.body.location_address_1[j]
+                                            && req.body.location_address_2[i] ===req.body.location_address_2[j]
+                                            && req.body.location_city[i] === req.body.location_city[j]
+                                            && req.body.location_state[i] === req.body.location_state[j]
+                                            && req.body.location_nation[i] === req.body.location_nation[j])
+                                            {
+                                                res.redirect('/attempt/fail/iden_fields');
+                                                unable_to_write = true;
+                                                break; 
+                                            }
+                                    }
+                                }
+                            }
+                    if (!unable_to_write)
+                        if (req.body.social_url !== undefined)
+                            if (typeof req.body.social_url !== 'string')
+                            {
+                                for (var i = 0; i < req.body.social_url.length - 1; i++)
+                                {
+                                    for (var j = i + 1; j < req.body.social_url.length; j++)
+                                    {
+                                        if (req.body.social_url[i] === req.body.social_url[j])
+                                        {
+                                            res.redirect('/attempt/fail/iden_fields');
+                                            unable_to_write = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                    if (!unable_to_write)
+                    {
+                        // Password Hashing
+                        const cipher = crypto.createCipher('aes192', 'password'); 
+                        // Encrypt Here
+                        var encrypted = cipher.update(company_inf.password, 'sha256', 'hex');  
+                        // Final Encrypted String
+                        encrypted += cipher.final('hex');
+
+                        company_inf.password = encrypted;
+
+                        company_inf.save(function(err)
+                        {
+                            if (err) throw err;
+                            console.log("New User Saved.")
+                            res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");
+                        })
+                    }     
+                })
             }
         })
-        user_info.find({}).lean().exec(function(err, infos)
-        {
-            if (err) throw err;
-            if (infos !== undefined)
-            {
-                for (var i = 0; i < infos.length; i++)
-                {
-                    if (company_inf.username === infos[i].username)
-                    {
-                        username_error = true;
-                    }
-                    if (company_inf.company_email === infos[i].email)
-                    {
-                        email_error = true;    
-                    }
-                }
-            }
-        })
-        
-        if (req.body.location_address_1 !== undefined)
-            if (typeof req.body.location_address_1 !== 'string')
-        {
-            for (var i = 0; i < req.body.location_address_1.length - 1; i++)
-            {
-                for (var j = i + 1; j < req.body.location_address_1.length; j++)
-                {
-                    if (req.body.location_address_1[i] === req.body.location_address_1[j]
-                        && req.body.location_address_2[i] ===req.body.location_address_2[j]
-                        && req.body.location_city[i] === req.body.location_city[j]
-                        && req.body.location_state[i] === req.body.location_state[j]
-                        && req.body.location_nation[i] === req.body.location_nation[j])
-                        error = true;
-                }
-            }
-            }
-
-        if (req.body.social_url !== undefined)
-            if (typeof req.body.social_url !== 'string')
-        {
-            for (var i = 0; i < req.body.social_url.length - 1; i++)
-            {
-                for (var j = i + 1; j < req.body.social_url.length; j++)
-                {
-                    if (req.body.social_url[i] === req.body.social_url[j])
-                        error = true;
-                }
-            }
-            }
-
-        
-        if(username_error)
-        {
-            res.redirect('/attempt/fail/iden_username');
-        }
-        else if (error)
-        {
-            res.redirect('/attempt/fail/iden_fields');
-        }
-        else if (email_error)
-        {
-            res.redirect('/attempt/fail/iden_email');
-        }
-        else
-        {
-            // Password Hashing
-            const cipher = crypto.createCipher('aes192', 'password'); 
-            // Encrypt Here
-            var encrypted = cipher.update(company_inf.password, 'sha256', 'hex');  
-            // Final Encrypted String
-            encrypted += cipher.final('hex');
-
-            company_inf.password = encrypted;
-
-
-            company_inf.save(function(err)
-            {
-                if (err) throw err;
-                console.log("New User Saved.")
-                res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");
-            })
-        }        
     }
     else
     {
@@ -347,67 +352,68 @@ app.post('/register_company',function(req,res){
 
 app.post('/edit_user_profile_submit/id/:id', function(req, res){  
     var user_profile = new user_info(req.body);
-    var email_error = false;
+    var unable_to_write = false;
 
     company_info.find({}).lean().exec(function(err, infos)
+    {
+        if (err) throw err;
+        if (infos !== undefined)
         {
-            if (err) throw err;
-            if (infos !== undefined)
+            for (var i = 0; i < infos.length; i++)
             {
-                for (var i = 0; i < infos.length; i++)
+                if (user_profile.email === infos[i].company_email)
                 {
-                    if (user_profile.email === infos[i].company_email)
-                    {
-                        email_error = true;    
-                    }
+                    res.redirect('/attempt/fail/iden_email');
+                    unable_to_write = true;
+                    break;    
                 }
             }
-    });
-    user_info.find({}).lean().exec(function(err, infos)
+        }
+        if (!unable_to_write)
         {
-            if (err) throw err;
-            if (infos !== undefined)
+            user_info.find({}).lean().exec(function(err, infos2)
             {
-                for (var i = 0; i < infos.length; i++)
+                if (err) throw err;
+                if (infos2 !== undefined)
                 {
-                    if (req.params["id"] == infos[i]._id) continue;
-                    if (user_profile.email === infos[i].email)
+                    for (var i = 0; i < infos2.length; i++)
                     {
-                        email_error = true;    
+                        if (req.params["id"] == infos2[i]._id) continue;
+                        if (user_profile.email === infos2[i].email)
+                        {
+                            res.redirect('/attempt/fail/iden_email');
+                            unable_to_write = true;
+                            break;    
+                        }
                     }
                 }
-            }
+                if (!unable_to_write)
+                {
+                    user_info.findOneAndUpdate({_id: req.params["id"]}, 
+                    {
+                        familyname: user_profile.familyname,
+                        givename: user_profile.givename,
+                        gender: user_profile.gender,
+                        dob: user_profile.dob,
+                        address: user_profile.address,
+                        phonenumber: user_profile.phonenumber,
+                        email: user_profile.email,
+                        academiclv: user_profile.academiclv,
+                        graduate: user_profile.graduate
+                    }, function(err){
+                        if (err) throw err;
+                    });
+                    res.redirect("/profile/role/user/userID/" + req.params["id"]);
+                }
+            });
+        }
     });
-
-    if (email_error)
-    {
-        res.redirect('/attempt/fail/iden_email');
-    }
-    else
-    {
-        user_info.findOneAndUpdate({_id: req.params["id"]}, 
-        {
-            familyname: user_profile.familyname,
-            givename: user_profile.givename,
-            gender: user_profile.gender,
-            dob: user_profile.dob,
-            address: user_profile.address,
-            phonenumber: user_profile.phonenumber,
-            email: user_profile.email,
-            academiclv: user_profile.academiclv,
-            graduate: user_profile.graduate
-        }, function(err){
-            if (err) throw err;
-        });
-        res.redirect("/profile/role/user/userID/" + req.params["id"]);
-    }
 });
 
 
 app.post('/edit_company_profile/userID/:id',function(req,res){
     console.log(req.body);
     var error = false;
-    var email_error = false;
 
     // Validation & Hanlder
     if (req.body.save === 'Save Company Information')
@@ -443,69 +449,68 @@ app.post('/edit_company_profile/userID/:id',function(req,res){
             }
         }
 
-        company_info.find({}).lean().exec(function(err, docs)
-        {
-            if (err) throw err;
-            for (var i = 0; i < docs.length; i++)
-            {
-                if (docs[i]._id == req.session.reg_num) continue;
-                if (req.body.company_email === docs[i].company_email)
-                {
-                    email_error = true;
-                    break;
-                }
-            }
-        })
-        user_info.find({}).lean().exec(function(err, docs)
-        {
-            if (err) throw err;
-            for (var i = 0; i < docs.length; i++)
-            {                
-                if (req.body.company_email === docs[i].email)
-                {
-                    email_error = true;
-                    break;
-                }
-            }
-        })
-
-        if (!error)
-        {
-            company_info.findOneAndUpdate({_id: req.params["id"]}, {
-                company_name: comp_info.company_name,
-                company_type: comp_info.company_type,
-                company_industry: comp_info.company_industry,
-                founded_year: comp_info.founded_year,
-                set_founded_year_private: comp_info.set_founded_year_private,
-                company_size: comp_info.company_size,
-                set_company_size_private: comp_info.set_company_size_private,
-                overview: comp_info.overview,
-                headquarters_nation: comp_info.headquarters_nation,
-                headquarters_city: comp_info.headquarters_city,
-                headquarters_state: comp_info.headquarters_state,
-                company_email: comp_info.company_email,
-                location_address_1: comp_info.location_address_1,
-                location_address_2: comp_info.location_address_2,
-                location_nation: comp_info.location_nation,
-                location_city: comp_info.location_city,
-                location_state: comp_info.location_state,
-                social_select: comp_info.social_select,
-                social_url: comp_info.social_url,
-                company_website: comp_info.company_website
-            }, {upsert:true}, function(error) {            
-                if (error) throw (error);
-                console.log("Your info has been saved!");
-            });
-        }
-        else if (error)
+        if (error)
         {
             res.redirect('/attempt/fail/iden_fields');
         }
-        else if (email_error)
+        else
         {
-            res.redirect('/attempt/fail/iden_email');
-        }
-    
+            company_info.find({}).lean().exec(function(err, docs)
+            {
+                if (err) throw err;
+                for (var i = 0; i < docs.length; i++)
+                {
+                    if (docs[i]._id == req.session.reg_num) continue;
+                    if (req.body.company_email === docs[i].company_email)
+                    {
+                        res.redirect('/attempt/fail/iden_email');
+                        error = true;
+                        break;
+                    }
+                }
+                user_info.find({}).lean().exec(function(err, docs2)
+                {
+                    if (err) throw err;
+                    for (var i = 0; i < docs2.length; i++)
+                    {                
+                        if (req.body.company_email === docs2[i].email)
+                        {
+                            res.redirect('/attempt/fail/iden_email');
+                            error = true;
+                            break;
+                        }
+                    }
+                    if (!error)
+                    {
+                        company_info.findOneAndUpdate({_id: req.params["id"]}, {
+                            company_name: comp_info.company_name,
+                            company_type: comp_info.company_type,
+                            company_industry: comp_info.company_industry,
+                            founded_year: comp_info.founded_year,
+                            set_founded_year_private: comp_info.set_founded_year_private,
+                            company_size: comp_info.company_size,
+                            set_company_size_private: comp_info.set_company_size_private,
+                            overview: comp_info.overview,
+                            headquarters_nation: comp_info.headquarters_nation,
+                            headquarters_city: comp_info.headquarters_city,
+                            headquarters_state: comp_info.headquarters_state,
+                            company_email: comp_info.company_email,
+                            location_address_1: comp_info.location_address_1,
+                            location_address_2: comp_info.location_address_2,
+                            location_nation: comp_info.location_nation,
+                            location_city: comp_info.location_city,
+                            location_state: comp_info.location_state,
+                            social_select: comp_info.social_select,
+                            social_url: comp_info.social_url,
+                            company_website: comp_info.company_website
+                        }, {upsert:true}, function(error) {            
+                            if (error) throw (error);
+                            console.log("Your info has been saved!");
+                        });
+                    }
+                })
+            });
+        }                
     }
     else if (req.body.save === 'Save Recruitment Form')
     {
@@ -534,12 +539,10 @@ app.post('/edit_company_profile/userID/:id',function(req,res){
                 if (err) throw (err);
                 console.log("Your recruitment has been saved.");            
             });
+
+            res.redirect("/profile/role/company/userID/" + req.params["id"]);
         }       
-    }    
-    if (!error && !email_error)
-    {
-        res.redirect("/profile/role/company/userID/" + req.params["id"]);
-    }   
+    }
 });
 
 app.post('/add_job=:job_id', function(req, res){
@@ -723,7 +726,7 @@ app.get('/edit_user_profile/id/:id', function(req, res){
         user_info.find({_id: req.params["id"]}).lean().exec(function(err, docs)
         {
             if (err) throw err;
-            res.render('user_edit', {result: docs});
+            res.render('user_edit', {result: docs, personal: [req.session.reg_num, req.session.role]});
         });
     } 
 });
@@ -744,7 +747,7 @@ app.get('/edit-info/id=:id', function(req, res)
             {
                 if (error) throw error;
                 console.log(docs[0]._id);
-                res.render('edit_company_info.ejs', {result: docs, jobs: jobs});
+                res.render('edit_company_info.ejs', {result: docs, jobs: jobs, personal: [req.session.reg_num, req.session.role]});
             });                         
         });
     }
