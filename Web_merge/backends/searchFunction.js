@@ -25,7 +25,7 @@ module.exports = function search(text, req, res) {
                 tagList.splice(tagList.indexOf(tagList[i]), 1);
         }
 
-        if (personal[0] !== undefined) {
+        if (personal[1] === "user") {
             user_info.find({ _id: req.session.reg_num }).lean().exec(function (err, user) {
                 if (user[0].cart.length != 0) {
                     for (var i = 0; i < user[0].cart.length; i++) {

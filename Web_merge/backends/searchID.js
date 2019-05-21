@@ -23,7 +23,7 @@ module.exports = function searchID(id, req, res) {
         var url = "mongodb://localhost:27017/database";
         mongoose.connect(url, function (err, db) {
             if (err) throw err;
-            if (personal[0] !== undefined) {
+            if (personal[1] === "user") {
                 user_info.find({ _id: req.session.reg_num }).lean().exec(function (err, user) {
                     if (user[0].cart.length != 0) {
                         for (var i = 0; i < user[0].cart.length; i++) {
