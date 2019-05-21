@@ -70,6 +70,28 @@
                                     <span class="border border-secondary mx-2 p-1"><%= item %></span>
                                     <%})%>
                                 </div>
+                                <%var text = "http://localhost:3000/add_job=" + result[i]._id%>
+                                <!--<form class="form-inline float-right" method="POST" action= <%=text%> id="searchForm">
+                                    <button class="btn btn-lg btn-primary px-5" type="submit" id="searchBtn">Thêm vào xem sau</button>
+                                </form>-->
+                                <% if (personal[1] === 'user') { %>
+                                    <% if (personal.length > 2) { %>
+                                    <% var yes = false %>
+                                    <% for (var j = 2; j < personal.length; j++) { %>
+                                        <% if (personal[j] == result[i]._id) { %>
+                                                <% yes = true %>
+                                                <% break %>
+                                        <%  } %>
+                                    <%  } %>
+                                    <% if (yes) { %>
+                                        <div><i class="fa fa-check-circle" style="color: green; float: right;"></i></div>
+                                    <% } else { %>
+                                        <div class="add_"><button class="btn add_to_list" id="<%= result[i]._id %>" style="float: right; padding: 1px 2px; border: none; background-color: skyblue;"><i class="fa fa-calendar-plus-o" style="font-size: 25px;"></i> Apply </button> </div>
+                                    <% } %>
+                                <% } else {%>
+                                    <div class="add_"><button class="btn add_to_list" id="<%= result[i]._id %>" style="float: right; padding: 1px 2px; border: none; background-color: skyblue;"><i class="fa fa-calendar-plus-o" style="font-size: 25px;"></i> Apply </button> </div>
+                                <% } %>
+                                <% } %>   
                             </div>
                         </div>
                     </div>
@@ -96,7 +118,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="/js/index.js"></script>
+    <script src="/static/script_B.js"></script>
 </body>
 
 </html>
