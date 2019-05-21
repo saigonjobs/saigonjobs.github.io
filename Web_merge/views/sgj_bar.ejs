@@ -40,7 +40,7 @@
                     <!-- ADD HISTORY LINK HERE!-->
                     <% if (personal[1] === 'user') { %>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">History</a>
+                            <a class="nav-link" href=<%="/history/" + personal[0]%>>History</a>
                         </li>
                     <% } %>
                     <% var link = "/profile/role/" + personal[1] + "/userID/" + personal[0] %>   

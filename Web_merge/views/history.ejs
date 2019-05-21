@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>SaigonJobs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="/static/welcomeStyle.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- NAVBAR START HERE -->
+    <%- include('sgj_bar') %>
+    <!-- NAVBAR END HERE -->
+    <!-- ///////////////////////// MAIN CONTENT START HERE /////////////////////////-->
+    
+    <div id="searchBar" class="searchContainer flex-wrap align-content-center">
+        <!-- SEARCH BAR START HERE -->
+        <h1 class="w-100 text-center mb-5 display-1 font-weight-bold text-danger">JOBS CART</h1>
+        <!-- SEARCH BAR END HERE -->
+
+        <!-- JOBS NEWS START HERE -->
+        <% if (result.length != 0) { %> 
+            <% for (var i = 0; i < result.length; i++) {%>
+                <div class="card job w-75 m-2 shadow rounded" id="">
+                    <div class="job_content clearfix p-2 ">
+                        <div class="logo float-left w-25 justify-content-center align-items-center d-flex">
+                            <% img_url = "/static/logo.png" %>
+                            <img src= <%= img_url %> alt="" class="mt-2 w-75">
+                        </div>
+                        <div class="job_description float-left w-75">
+                            <% detail_url = "/detail/" + result[i]._id %>
+                            <%if (detail === false){%>
+                            <a target = "_blank" href= <%= detail_url %> >
+                                <h1 class="title"> <%= result[i].job_title %> </h1>
+                            </a>
+                            <%} else {%>
+                                <h1 class="title"> <%= result[i].job_title %> </h1>
+                            <% } %>
+                            <p class="address"> <%= result[i].job_location_pick%> </p>                            
+                            <!--DETAIL INFOMATION START-->
+                            <%if(detail === true){%>
+                            <div class="description">
+                                <h3>Overview</h3>
+                                <p><%= result[i].overview %></p>
+                            </div>
+                            <div class="responsibilities">
+                                <h3>Responsibilities</h3>
+                                <p><%= result[i].job_responsibilities %></p>
+                            </div>
+                            <div class="qualification">
+                                <h3>Qualifications</h3>
+                                <p><%= result[i].job_qualifications %></p>
+                            </div>
+                            <div class="links">
+                                <h3>Company</h3>
+                                <% var link = "/profile/role/company/userID/" + result[i].company_id; %>
+                                <a href= "<%= link %>"><p><%= company[0].company_name %></p> </a>
+                            </div>
+                            <% } %>
+                            <!--DETAIL INFOMATION END-->
+                            <div class="d-flex text-secondary justify-content-between">
+                                <div class="tagList">
+                                    <% result[i].job_tags.forEach(function(item){%>
+                                    <span class="border border-secondary mx-2 p-1"><%= item %></span>
+                                    <%})%>
+                                </div>
+                                <%var text = "http://localhost:3000/history/" + personal[0] + "/delete/" + result[i]._id%>
+                                <form class="form-inline float-right" method="POST" action= <%=text%> id="searchForm">
+                                    <button class="btn btn-lg btn-primary px-5" type="submit" id="searchBtn">Xóa</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        <% } %>
+
+        
+                
+        <!-- JOBS NEWS END HERE -->
+    </div>
+    
+
+    
+    <!--///////////////////////// MAIN CONTENT END HERE /////////////////////////-->
+    <!--Footer start here-->
+    <%- include('sgj_footer') %>
+    <!--Footer end here-->
+    <div class="fixed-bottom">
+        <a href="#">
+            <img class="backToTop" src="/static/backToTop.png" alt="">
+        </a>
+    </div>
+    <!--Script Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/static/script_B.js"></script>
+</body>
+
+</html>
