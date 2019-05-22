@@ -7,7 +7,7 @@
     <link href="/static/welcomeStyle.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -45,6 +45,11 @@
                             <p class="address"> <%= result[i].job_location_pick%> </p>                            
                             <!--DETAIL INFOMATION START-->
                             <%if(detail === true){%>
+                            <div class="links">
+                                <h3>Company</h3>
+                                <% var link = "/profile/role/company/userID/" + result[i].company_id; %>
+                                <a href= "<%= link %>"><p style="font-size: 27px"><%= company[0].company_name %></p> </a>
+                            </div>
                             <div class="description">
                                 <h3>Overview</h3>
                                 <p><%= result[i].overview %></p>
@@ -56,12 +61,7 @@
                             <div class="qualification">
                                 <h3>Qualifications</h3>
                                 <p><%= result[i].job_qualifications %></p>
-                            </div>
-                            <div class="links">
-                                <h3>Company</h3>
-                                <% var link = "/profile/role/company/userID/" + result[i].company_id; %>
-                                <a href= "<%= link %>"><p><%= company[0].company_name %></p> </a>
-                            </div>
+                            </div>                            
                             <% } %>
                             <!--DETAIL INFOMATION END-->
                             <div class="d-flex text-secondary justify-content-between">

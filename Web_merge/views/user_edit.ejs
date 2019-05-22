@@ -27,13 +27,15 @@
               <div class="form-group col-md-8">
                 <div class="input">
                 <label for="inputCity">Family name </label>
-                <input type="text" class="form-control" id="familyname" name="familyname" placeholder="Nguyen Van" required>
+                <% var family_n = result[0].familyname %>
+                <input type="text" class="form-control" id="familyname" name="familyname" placeholder="Nguyen Van" required value="<%= family_n %>">
               </div>
               </div>
               <div class="form-group col-md-4">
                 <div class="input">
                 <label for="inputCity">Given name</label>
-                <input type="text" class="form-control" id="givename" name="givename" placeholder="A"required>
+                <% var given_n = result[0].givename %>
+                <input type="text" class="form-control" id="givename" name="givename" placeholder="A"required value="<%= given_n %>">
               </div>
               </div>
             </div>
@@ -44,23 +46,27 @@
                   <label for="inputState">Gender</label>
                   <select id="gender" name="gender" class="form-control" required>
                     <option value="">Choose...</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
+                    <% var options = ["Male", "Female", "Other"] %>
+                    <% for ( var i = 0; i < options.length; i++ ) { %>
+                        <% var selected = ( result[0].gender == options[i] ) ? "selected" : ""; %>
+                            <option <%= selected %>><%= options[ i ] %></option>
+                    <%}%>
                   </select>
                 </div>
               </div>
               <div class="form-group col-md-2">
                 <div class="input">
                   <label for="inputCity">Date of Birth</label>
-                  <input type="date" class="form-control" id="dob" name="dob" required>
+                  <% var dob_n = result[0].dob %>
+                  <input type="date" class="form-control" id="dob" name="dob" required value="<%= dob_n %>">
                 </div>
               </div>
               <div class="form-group col-md-8">
                   <div class="form-group">
                     <div class="input">
                       <label for="inputAddress">Address</label>
-                      <input type="text" class="form-control" id="address" name="address" placeholder="1234 Ly Thuong Kiet" required>
+                      <% var addr = result[0].address %>
+                      <input type="text" class="form-control" id="address" name="address" placeholder="1234 Ly Thuong Kiet" required value="<%= addr %>">
                     </div>
                     </div>
               </div>
@@ -70,13 +76,15 @@
               <div class="form-group col-md-4">
                 <div class="input">
                   <label for="inputAddress">Phone number</label>
-                  <input type="text" name="phonenumber"class="form-control" id="phonenumber" placeholder="0913659245" required>
+                  <% var phone = result[0].phonenumber %>
+                  <input type="text" name="phonenumber"class="form-control" id="phonenumber" placeholder="0913659245" required value="<%= phone %>">
                 </div>
               </div>
               <div class="form-group col-md-8">
                 <div class="input">
                   <label for="inputEmail4">Email address</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="saigonjobs@gmail.com" required>
+                  <% var email_n = result[0].email %>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="saigonjobs@gmail.com" required value="<%= email_n %>">
                 </div>
               </div>
             </div>
@@ -85,13 +93,15 @@
               <div class="form-group col-md-6">
                 <div class="input">
                 <label for="inputCity">Academic level</label>
-                <input type="text" class="form-control" name="academiclv" id="academiclv" required>
+                <% var aca = result[0].academiclv %>
+                <input type="text" class="form-control" name="academiclv" id="academiclv" required value="<%= aca %>">
               </div>
               </div>
               <div class="form-group col-md-6">
                 <div class="input">
                 <label for="inputState">Graduated from</label>
-                <input type="text" class="form-control" id="graduate" name="graduate" required>
+                <% var grad = result[0].graduate %>
+                <input type="text" class="form-control" id="graduate" name="graduate" required value="<%= grad %>">
               </div>
               </div>
             <div class="col-md-4">

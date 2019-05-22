@@ -429,6 +429,7 @@ app.post('/edit_company_profile/userID/:id', function (req, res) {
                             if (error) throw (error);
                             console.log("Your info has been saved!");
                         });
+                        res.redirect("/profile/role/company/userID/" + req.params["id"]);
                     }
                 })
             });
