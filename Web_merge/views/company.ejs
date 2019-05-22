@@ -153,7 +153,7 @@
               <% if (personal[1] === 'user'){ %>
                 <% var action_mess = "/add-comment/companyID/" + result[0]._id %>
                 <form method="POST" action="<%= action_mess %>">
-                  <p>Name</p><input class="form-control" type="text" id="name" name="name" placeholder="Enter Name ..."/>
+                  <p>Name</p><input class="form-control" type="text" id="name" name="name" placeholder="Enter Name ..."/ required>
                   <span>Rate</span> <select class="form-control" id="rate" name="rate">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -162,7 +162,7 @@
                     <option value="5">5</option>
                     </select>
                     <span>Comment</span>
-                    <input type="text" class="form-control" id="body" name="body" placeholder="Enter Comment...">
+                    <input type="text" class="form-control" id="body" name="body" placeholder="Enter Comment..." required>
                     <hr>
                     <input style="display: block; margin-left: auto; margin-right: auto" type="submit" class="btn btn-primary" value="Add Comment" >
                 </form>
