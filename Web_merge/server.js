@@ -615,7 +615,7 @@ app.get('/company_log', function (req, res, next) {
 
 // Edit user profile request
 app.get('/edit_user_profile/id/:id', function (req, res) {
-    if (req.session.reg_num !== req.params["id"] || req.session.role !== "user") {
+    if (req.session.reg_num != req.params["id"] || req.session.role !== "user") {
         res.redirect('/attempt/fail/access_denied');
     }
     else {
