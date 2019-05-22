@@ -191,7 +191,8 @@ app.post('/register_user', function (req, res) {
                         user_inf.save(function (err) {
                             if (err) throw err;
                             console.log("New User Saved.")
-                            res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");
+                            // res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");
+                            res.render('login_user', {message: "Sign Up Successful"});
                         })
                     }
                 });
@@ -285,7 +286,7 @@ app.post('/register_company', function (req, res) {
                         company_inf.save(function (err) {
                             if (err) throw err;
                             console.log("New User Saved.")
-                            res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");
+                            res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");                            
                         })
                     }
                 })
