@@ -286,7 +286,8 @@ app.post('/register_company', function (req, res) {
                         company_inf.save(function (err) {
                             if (err) throw err;
                             console.log("New User Saved.")
-                            res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page.");                            
+                            // res.send("Registered Successfully! ;). Use localhost:3000/login to go to the login page."); 
+                            res.render('login_comp', {message: "Sign Up Successful"});                           
                         })
                     }
                 })
