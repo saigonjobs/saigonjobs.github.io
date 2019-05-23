@@ -19,12 +19,15 @@
     <div id="searchBar" class="searchContainer flex-wrap align-content-center">
         <!-- SEARCH BAR START HERE -->
         <form class="form-inline justify-content-center align-content-center w-75 my-5 flex-nowrap" method="GET" id="searchForm">
-            <input class="form-control form-control-lg w-100" type="search" placeholder="Search" aria-label="Search" id="searchTxt" name="searchText">
+            <input class="form-control form-control-lg w-100" type="search" placeholder="Search" aria-label="Search" id="searchTxt" name="searchText" required>
             <button class="btn btn-lg btn-success" type="submit" id="searchBtn">Search</button>
         </form>
         <!-- SEARCH BAR END HERE -->
 
         <!-- JOBS NEWS START HERE -->
+        <% if (result.length === 0) {%>
+            <h1 class="w-50 d-block text-center mb-5 font-weight-bold bg-primary text-light text-nowrap" style="border-radius: 5rem;">NOT FOUND</h1>
+        <% } %>
         <% if (result.length != 0) { %> 
             <% for (var i = 0; i < result.length; i++) {%>
                 <div class="card job w-75 m-2 shadow rounded" id="">
