@@ -439,7 +439,8 @@ app.post('/edit_company_profile/userID/:id', function (req, res) {
     }
     else if (req.body.save === 'Save Recruitment Form') {
         // Job Function Validating
-        if (req.body.job_tags.length > 1) {
+        if (req.body.job_tags !== undefined)
+        if (typeof req.body.job_tags !== 'string') {
             for (var i = 0; i < req.body.job_tags.length - 1; i++) {
                 for (var j = i + 1; j < req.body.job_tags.length; j++) {
                     if (req.body.job_tags[i] === req.body.job_tags[j]) {
